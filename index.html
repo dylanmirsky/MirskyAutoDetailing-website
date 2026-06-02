@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mirsky Auto Detailing — Seattle, WA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue:#3364F5;--blue-d:#1A44FF;
+      --fd:'Bebas Neue',sans-serif;--fl:'Barlow Condensed',sans-serif;--fb:'Inter',sans-serif;
+      --header-h:78px;--cmax:1200px;--cpad:28px;--sec:96px;
+      --ease:cubic-bezier(.16,1,.3,1);--spring:cubic-bezier(.34,1.56,.64,1);--dur:.32s;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+    body{font-family:var(--fb);line-height:1.7;background:#06070e;}
+    a{text-decoration:none;}
+    .c{max-width:var(--cmax);margin:0 auto;padding:0 var(--cpad);}
+    .eyebrow{font-family:var(--fl);font-weight:600;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:.6rem;}
+    .h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.25rem);line-height:1.04;letter-spacing:.01em;}
+
+    /* ── BUTTONS ── */
+    .btn-glass{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fl);font-weight:700;font-size:.875rem;letter-spacing:.09em;text-transform:uppercase;padding:.85rem 2.25rem;border-radius:100px;border:none;cursor:pointer;backdrop-filter:blur(20px) saturate(1.6);-webkit-backdrop-filter:blur(20px) saturate(1.6);transition:background var(--dur) var(--ease),box-shadow var(--dur) var(--ease),transform var(--dur) var(--spring);}
+    .btn-glass:hover{transform:translateY(-2px);}
+    .btn-glass:active{transform:translateY(0);}
+    .btn-primary{background:rgba(51,100,245,.3);color:#fff;border:1px solid rgba(51,100,245,.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 0 28px rgba(51,100,245,.3),0 8px 32px rgba(0,0,0,.4);}
+    .btn-primary:hover{background:rgba(51,100,245,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 0 40px rgba(51,100,245,.5),0 12px 40px rgba(0,0,0,.5);}
+    .btn-outline-glass{background:rgba(255,255,255,.08);color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 8px 32px rgba(0,0,0,.3);}
+    .btn-outline-glass:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.35);}
+    .btn-solid{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fl);font-weight:700;font-size:.875rem;letter-spacing:.09em;text-transform:uppercase;padding:.8rem 1.75rem;border-radius:6px;background:var(--blue);color:#fff;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(51,100,245,.35);transition:background var(--dur) var(--ease),transform var(--dur) var(--spring),box-shadow var(--dur) var(--ease);}
+    .btn-solid:hover{background:var(--blue-d);transform:translateY(-2px);box-shadow:0 8px 32px rgba(51,100,245,.5);}
+    .btn-solid:active{transform:translateY(0);}
+    .btn-ghost{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fl);font-weight:700;font-size:.875rem;letter-spacing:.09em;text-transform:uppercase;padding:.8rem 1.75rem;border-radius:6px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.18);cursor:pointer;transition:background var(--dur) var(--ease),transform var(--dur) var(--spring);}
+    .btn-ghost:hover{background:rgba(255,255,255,.14);transform:translateY(-2px);}
+
+    /* ══════════════════════════════════
+       LIQUID GLASS HEADER
+    ══════════════════════════════════ */
+    .header{position:fixed;inset:0 0 auto;z-index:300;height:var(--header-h);background:linear-gradient(180deg,rgba(255,255,255,.1) 0%,rgba(255,255,255,.05) 100%);backdrop-filter:blur(44px) saturate(1.9);-webkit-backdrop-filter:blur(44px) saturate(1.9);border-bottom:1px solid rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 8px 48px rgba(0,0,0,.5);}
+    .header-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:var(--header-h);gap:1rem;}
+    .nav-left,.nav-right{display:flex;align-items:center;gap:1.25rem;}
+    .nav-right{justify-content:flex-end;}
+    .nav-left a{font-family:var(--fl);font-weight:600;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);transition:color var(--dur) var(--ease);}
+    .nav-left a:hover{color:#fff;}
+    .nav-left .nav-phone-link{font-size:.82rem;letter-spacing:.06em;color:rgba(100,154,255,.85);font-weight:700;}
+    .nav-left .nav-phone-link:hover{color:#fff;}
+    .header-logo{display:flex;justify-content:center;padding-top:20px;}
+    .header-logo img{height:62px;width:auto;object-fit:contain;display:block;}
+
+    /* Nav icons — bigger, labeled on hover */
+    .nav-icon{
+      display:flex;flex-direction:column;align-items:center;gap:.2rem;
+      position:relative;cursor:pointer;
+      color:rgba(255,255,255,.6);
+      transition:color var(--dur) var(--ease);
+    }
+    .nav-icon:hover{color:#fff;}
+    .nav-icon-btn{
+      width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+      background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+      transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease),transform var(--dur) var(--spring);
+    }
+    .nav-icon:hover .nav-icon-btn{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.28);transform:translateY(-1px);}
+    .nav-icon-btn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;}
+    .nav-icon-label{font-family:var(--fl);font-weight:600;font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.4);transition:color var(--dur) var(--ease);}
+    .nav-icon:hover .nav-icon-label{color:rgba(255,255,255,.7);}
+    .nav-phone{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.05em;color:#fff;background:rgba(51,100,245,.15);border:1px solid rgba(51,100,245,.35);border-radius:8px;padding:.38rem .9rem;transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease),transform var(--dur) var(--spring);white-space:nowrap;}
+    .nav-phone:hover{background:rgba(51,100,245,.28);border-color:rgba(51,100,245,.6);transform:translateY(-1px);}
+
+    /* ══════════════════════════════════
+       HERO  bg:#06070e
+    ══════════════════════════════════ */
+    .hero{background:#06070e;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:var(--header-h);position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 50% 25%,rgba(51,100,245,.14) 0%,transparent 65%),radial-gradient(ellipse 40% 30% at 80% 70%,rgba(30,50,200,.07) 0%,transparent 60%);}
+    .hero::after{content:'';position:absolute;inset:0;opacity:.04;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px;}
+    .hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:2.25rem;text-align:center;padding:0 var(--cpad);}
+    .hero-logo{width:310px;filter:drop-shadow(0 0 40px rgba(51,100,245,.2)) drop-shadow(0 20px 60px rgba(0,0,0,.7));}
+    .hero-logo img{width:100%;display:block;}
+    .hero-actions{display:flex;gap:.875rem;flex-wrap:wrap;justify-content:center;}
+    .hero-arrow{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+    .hero-arrow span{font-family:var(--fl);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.75);}
+    .arrow-bare{animation:arrowBounce 1.4s ease-in-out infinite;}
+    .arrow-bare svg{width:42px;height:42px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 12px rgba(51,100,245,.8)) drop-shadow(0 0 24px rgba(51,100,245,.4));}
+    @keyframes arrowBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(12px);}}
+
+    /* ══════════════════════════════════
+       HIGHLIGHTS  bg:#0f1828
+    ══════════════════════════════════ */
+    .highlights{background:#0f1828;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);padding:1.25rem 0;}
+    .highlights-inner{display:flex;align-items:center;justify-content:center;}
+    .hl-item{display:flex;align-items:center;gap:.625rem;padding:0 2.5rem;font-family:var(--fl);font-weight:600;font-size:.875rem;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.75);}
+    .hl-item svg{width:17px;height:17px;stroke:var(--blue);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+    .hl-div{width:1px;height:26px;background:rgba(255,255,255,.12);}
+
+    /* ══════════════════════════════════
+       SERVICES  bg:#0c0c0c
+    ══════════════════════════════════ */
+    .services{background:#0c0c0c;padding:var(--sec) 0;}
+    .services-head{text-align:center;margin-bottom:3.5rem;}
+    .services-head .h2{color:#fff;}
+    .services-sub{margin-top:.6rem;font-family:var(--fl);font-size:.8rem;letter-spacing:.06em;color:rgba(255,255,255,.5);}
+    .services-main{display:grid;grid-template-columns:1fr 1.22fr 1fr;gap:1.25rem;align-items:end;margin-bottom:1.5rem;}
+    .svc-card{background:#181818;border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur) var(--ease);}
+    .svc-card:hover{transform:translateY(-5px);box-shadow:0 20px 60px rgba(0,0,0,.6);border-color:rgba(255,255,255,.16);}
+    .svc-card.featured{border-color:rgba(51,100,245,.45);box-shadow:0 0 0 1px rgba(51,100,245,.2),0 8px 40px rgba(51,100,245,.15);position:relative;}
+    .svc-card.featured:hover{border-color:rgba(51,100,245,.65);box-shadow:0 0 0 1px rgba(51,100,245,.35),0 24px 64px rgba(51,100,245,.25);}
+    .featured-badge{position:absolute;top:0;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-family:var(--fl);font-weight:700;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;padding:.3rem 1.25rem;border-radius:0 0 8px 8px;z-index:2;}
+    .svc-img{position:relative;overflow:hidden;background:#111;}
+    .svc-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s var(--ease);}
+    .svc-card:hover .svc-img img{transform:scale(1.05);}
+    .svc-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(12,12,12,.8) 0%,transparent 55%);}
+    .svc-card:not(.featured) .svc-img{height:178px;}
+    .svc-card.featured .svc-img{height:218px;}
+    .svc-body{padding:1.5rem;}
+    .svc-card.featured .svc-body{padding:1.75rem;}
+    .svc-meta{font-family:var(--fl);font-size:.75rem;letter-spacing:.06em;color:rgba(255,255,255,.4);margin-bottom:.6rem;display:flex;align-items:center;gap:.375rem;}
+    .svc-meta svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;}
+    .svc-body h3{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.03em;color:#fff;margin-bottom:.625rem;}
+    .svc-card.featured .svc-body h3{font-size:1.875rem;}
+    .svc-body p{font-size:.875rem;color:rgba(255,255,255,.6);line-height:1.65;}
+    .svc-price-note{font-size:.75rem;color:rgba(255,255,255,.35);font-style:italic;margin-top:.5rem;line-height:1.5;}
+    .svc-link{display:inline-flex;align-items:center;gap:.375rem;font-family:var(--fl);font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-top:1rem;transition:gap var(--dur) var(--spring);}
+    .svc-link:hover{gap:.625rem;}
+    /* Add-ons */
+    .addons-label{font-family:var(--fl);font-weight:700;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.875rem;text-align:center;}
+    .addons-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.875rem;}
+    .addon-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:1.125rem 1.25rem;transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease),transform var(--dur) var(--ease);}
+    .addon-card:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16);transform:translateY(-2px);}
+    .addon-price{font-family:'Bebas Neue',sans-serif;font-size:1.375rem;color:var(--blue);letter-spacing:.02em;margin-bottom:.25rem;}
+    .addon-card h4{font-family:var(--fl);font-weight:700;font-size:.9rem;letter-spacing:.05em;text-transform:uppercase;color:#fff;margin-bottom:.4rem;}
+    .addon-card p{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.6;}
+    .addon-combo-note{font-size:.73rem;color:rgba(255,255,255,.28);margin-top:.6rem;font-style:italic;}
+
+    /* ══════════════════════════════════
+       ABOUT  bg:#071428  (deep navy)
+    ══════════════════════════════════ */
+    .about{background:#071428;padding:var(--sec) 0;}
+    .about-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:center;}
+    .about-left .eyebrow{color:var(--blue);}
+    .about-left .h2{color:#fff;margin-bottom:1.25rem;}
+    .about-left p{font-size:.9375rem;color:rgba(255,255,255,.7);line-height:1.75;margin-bottom:1rem;}
+    .about-left p strong{color:#fff;font-weight:600;}
+    .about-value-note{margin-top:1.5rem;padding:1.125rem 1.5rem;background:rgba(51,100,245,.1);border:1px solid rgba(51,100,245,.25);border-radius:10px;}
+    .about-value-note p{font-size:.875rem;color:rgba(255,255,255,.7);line-height:1.65;margin-bottom:0;}
+    .about-value-note p strong{color:var(--blue);}
+
+    /* Flip cards */
+    .team-flip-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+    .flip-card{perspective:1200px;aspect-ratio:2/3;cursor:pointer;}
+    .flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .75s cubic-bezier(.4,0,.2,1);}
+    .flip-card:hover .flip-inner{transform:rotateY(180deg);}
+    .flip-front,.flip-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;overflow:hidden;}
+    .flip-back{transform:rotateY(180deg);}
+    .flip-front img,.flip-back img{width:100%;height:100%;object-fit:cover;display:block;}
+    .flip-label{
+      position:absolute;bottom:0;left:0;right:0;
+      padding:1.25rem 1.25rem .875rem;
+      background:linear-gradient(to top,rgba(7,20,40,.95) 0%,rgba(7,20,40,.6) 60%,transparent 100%);
+    }
+    .flip-label strong{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.05em;color:#fff;display:block;}
+    .flip-label span{font-family:var(--fl);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+    .flip-hint{
+      position:absolute;top:.875rem;right:.875rem;
+      font-family:var(--fl);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+      color:#fff;background:rgba(51,100,245,.35);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+      padding:.35rem .9rem;border-radius:100px;border:1px solid rgba(51,100,245,.6);
+      box-shadow:0 0 14px rgba(51,100,245,.4);
+      animation:flipHintPulse 2.4s ease-in-out infinite;
+    }
+    @keyframes flipHintPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.65;transform:scale(.95);}}
+
+    /* ══════════════════════════════════
+       WHY CHOOSE  bg:#060f08  (deep forest)
+    ══════════════════════════════════ */
+    .why{background:#07101e;padding:var(--sec) 0;}
+    .why-head{text-align:center;margin-bottom:3rem;}
+    .why-head .eyebrow{color:var(--blue);}
+    .why-head .h2{color:#fff;}
+    .why-head p{color:rgba(255,255,255,.6);margin-top:.75rem;font-size:.9375rem;}
+    /* stat row */
+    .why-stats{display:flex;justify-content:center;gap:3rem;margin-bottom:3.5rem;flex-wrap:wrap;}
+    .why-stat{text-align:center;}
+    .why-stat strong{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--blue);line-height:1;display:block;}
+    .why-stat span{font-family:var(--fl);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+    /* features 2x2 */
+    .why-features{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+    .why-feat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.5rem;display:flex;gap:1.125rem;align-items:flex-start;transition:border-color var(--dur) var(--ease),background var(--dur) var(--ease);}
+    .why-feat:hover{background:rgba(255,255,255,.06);border-color:rgba(51,100,245,.3);}
+    .why-feat-icon{width:42px;height:42px;background:rgba(51,100,245,.1);border:1px solid rgba(51,100,245,.22);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .why-feat-icon svg{width:20px;height:20px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+    .why-feat h4{font-family:var(--fl);font-weight:700;font-size:.9375rem;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:.3rem;}
+    .why-feat p{font-size:.875rem;color:rgba(255,255,255,.6);line-height:1.65;}
+
+    /* ══════════════════════════════════
+       ABOUT STATS
+    ══════════════════════════════════ */
+    .about-stats{display:flex;gap:2.5rem;margin-top:2rem;flex-wrap:wrap;}
+    .about-stat{text-align:center;}
+    .about-stat strong{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--blue);line-height:1;display:block;}
+    .about-stat span{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);}
+    .about-stat-stars{display:flex;align-items:center;gap:.25rem;justify-content:center;margin-bottom:.35rem;}
+    .about-stat-stars span{font-size:1.6rem;line-height:1;display:inline-block;background:linear-gradient(135deg,#FFD700 0%,#FACC15 45%,#FDE68A 75%,#FACC15 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 6px rgba(250,204,21,.55)) drop-shadow(0 0 14px rgba(250,180,0,.3));}
+    .about-stat-stars span:nth-child(1){animation:starPop .4s .0s cubic-bezier(.34,1.56,.64,1) both;}
+    .about-stat-stars span:nth-child(2){animation:starPop .4s .07s cubic-bezier(.34,1.56,.64,1) both;}
+    .about-stat-stars span:nth-child(3){animation:starPop .4s .14s cubic-bezier(.34,1.56,.64,1) both;}
+    .about-stat-stars span:nth-child(4){animation:starPop .4s .21s cubic-bezier(.34,1.56,.64,1) both;}
+    .about-stat-stars span:nth-child(5){animation:starPop .4s .28s cubic-bezier(.34,1.56,.64,1) both;}
+    @keyframes starPop{0%{transform:scale(0) rotate(-20deg);opacity:0;}70%{transform:scale(1.2) rotate(4deg);}100%{transform:scale(1) rotate(0);opacity:1;}}
+
+    /* ══════════════════════════════════
+       COMPARE  bg:#070c16
+    ══════════════════════════════════ */
+    .compare{background:#070c16;padding:var(--sec) 0;}
+    .compare-head{text-align:center;margin-bottom:3rem;}
+    .compare-head .eyebrow{color:var(--blue);}
+    .compare-head .h2{color:#fff;}
+    .compare-head p{color:rgba(255,255,255,.55);margin-top:.75rem;font-size:.9375rem;}
+    .compare-head em{color:rgba(255,255,255,.85);font-style:normal;}
+    .compare-table{display:grid;grid-template-columns:130px 1fr 1fr;gap:.75rem 1.25rem;align-items:stretch;}
+    .compare-col-bad,.compare-col-good{border-radius:12px 12px 0 0;overflow:hidden;}
+    .compare-col-empty{} /* spacer */
+    .compare-label{display:flex;align-items:center;padding:.875rem .5rem .875rem 0;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.82);line-height:1.35;text-shadow:0 0 18px rgba(51,100,245,.25);}
+    .compare-col-header{padding:1.125rem 1.5rem;display:flex;flex-direction:column;gap:.3rem;}
+    .compare-col-bad .compare-col-header{background:#1a1a1a;border:1px solid rgba(255,255,255,.1);}
+    .compare-col-good .compare-col-header{background:rgba(51,100,245,.18);border:1px solid rgba(51,100,245,.4);}
+    .compare-not-rec{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+    .compare-rec{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(51,100,245,.9);}
+    .compare-col-header strong{font-family:'Bebas Neue',sans-serif;font-size:1.375rem;letter-spacing:.04em;color:#fff;}
+    .compare-col-good .compare-col-header strong{color:#fff;}
+    .compare-cell{display:flex;align-items:center;gap:.875rem;padding:.875rem 1.25rem;border-radius:8px;font-size:.9rem;line-height:1.5;}
+    .compare-cell svg{width:20px;height:20px;flex-shrink:0;}
+    .compare-cell.bad{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.5);}
+    .compare-cell.good{background:rgba(51,100,245,.07);border:1px solid rgba(51,100,245,.22);color:rgba(255,255,255,.82);}
+
+    /* ══════════════════════════════════
+       HOW TO BOOK  bg:#100825  (deep purple)
+    ══════════════════════════════════ */
+    .how-to-book{background:#081530;padding:var(--sec) 0;}
+    .htb-head{text-align:center;margin-bottom:3.5rem;}
+    .htb-head .eyebrow{color:var(--blue);}
+    .htb-head .h2{color:#fff;}
+    .htb-head p{color:rgba(255,255,255,.65);margin-top:.75rem;font-size:.9375rem;}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem;}
+    .step{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:2rem 1.75rem;transition:border-color var(--dur) var(--ease),background var(--dur) var(--ease);}
+    .step:hover{background:rgba(255,255,255,.1);border-color:rgba(51,100,245,.4);}
+    .step-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:1;color:rgba(51,100,245,.4);margin-bottom:1rem;}
+    .step h3{font-family:var(--fl);font-weight:700;font-size:1.0625rem;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:.625rem;}
+    .step p{font-size:.875rem;color:rgba(255,255,255,.75);line-height:1.7;}
+    .square-booking-wrap{margin:2rem 0;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.1);box-shadow:0 20px 60px rgba(0,0,0,.5);}
+    .square-booking-wrap #square-appointment-widget{min-height:500px;}
+    .book-ctas{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;}
+
+    /* ══════════════════════════════════
+       PORTFOLIO  bg:#050505  (pure black)
+    ══════════════════════════════════ */
+    .work{background:#050505;padding:var(--sec) 0;}
+    .work-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;}
+    .work-head .eyebrow{color:var(--blue);}
+    .work-head .h2{color:#fff;}
+    .work-strips{overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,#000 6%,#000 94%,transparent 100%);display:flex;flex-direction:column;gap:12px;}
+    .work-strip-row{display:flex;gap:12px;width:max-content;}
+    .work-strip-left{animation:marqueeLeft 44s linear infinite;}
+    .work-strip-right{animation:marqueeRight 44s linear infinite;}
+    .work-strip-item{flex:0 0 auto;width:300px;height:220px;border-radius:10px;overflow:hidden;}
+    .work-strip-item img{width:100%;height:100%;object-fit:cover;display:block;}
+    @keyframes marqueeLeft{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+    @keyframes marqueeRight{0%{transform:translateX(-50%);}100%{transform:translateX(0);}}
+    /* hover no longer pauses the strip */
+
+    /* ══════════════════════════════════
+       REVIEWS  bg:#08091e  (deep indigo)
+    ══════════════════════════════════ */
+    .reviews{background:#08091e;padding:var(--sec) 0;}
+    .reviews-head{text-align:center;margin-bottom:3rem;}
+    .reviews-head .h2{color:#fff;}
+    .reviews-head p{color:rgba(255,255,255,.5);margin-top:.75rem;font-size:.9375rem;}
+    /* carousel with side arrows */
+    .carousel-wrapper{position:relative;}
+    .carousel-outer{overflow:hidden;}
+    .carousel-track{display:flex;gap:1.25rem;transition:transform .55s var(--ease);}
+    .review-card{flex:0 0 calc(33.333% - 1rem);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:1.75rem;transition:border-color var(--dur) var(--ease);}
+    .review-card:hover{border-color:rgba(51,100,245,.3);}
+    /* star row */
+    .review-stars{display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;}
+    .review-stars-icons{display:flex;gap:.1rem;}
+    .review-stars-icons span{color:#FACC15;font-size:1rem;line-height:1;}
+    .review-stars-score{font-family:var(--fl);font-weight:700;font-size:.8rem;letter-spacing:.06em;color:rgba(255,255,255,.45);}
+    .review-card blockquote{font-size:.9rem;color:rgba(255,255,255,.72);line-height:1.7;font-style:italic;margin-bottom:1.25rem;}
+    .review-author{display:flex;align-items:center;gap:.75rem;}
+    .review-avatar{width:38px;height:38px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1rem;color:#fff;flex-shrink:0;}
+    .review-meta strong{font-family:var(--fl);font-weight:700;font-size:.9rem;letter-spacing:.04em;text-transform:uppercase;color:#fff;display:block;}
+    .review-meta span{font-size:.78rem;color:rgba(255,255,255,.35);}
+    /* Side arrow buttons */
+    .carousel-arrow{
+      position:absolute;top:50%;transform:translateY(-50%);z-index:20;
+      width:48px;height:64px;border-radius:10px;
+      background:rgba(8,9,30,.55);
+      backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);
+      border:1px solid rgba(255,255,255,.1);
+      display:flex;align-items:center;justify-content:center;cursor:pointer;
+      transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease),transform var(--dur) var(--spring);
+    }
+    .carousel-arrow:hover{background:rgba(8,9,30,.8);border-color:rgba(255,255,255,.22);transform:translateY(-50%) scale(1.05);}
+    .carousel-arrow svg{width:18px;height:18px;stroke:rgba(255,255,255,.7);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+    .arrow-prev{left:-24px;}
+    .arrow-next{right:-24px;}
+    /* Dots — smaller, centered */
+    .carousel-dots{display:flex;justify-content:center;gap:.5rem;margin-top:1.75rem;}
+    .carousel-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.18);cursor:pointer;border:none;transition:background var(--dur) var(--ease),transform var(--dur) var(--spring);}
+    .carousel-dot.active{background:var(--blue);transform:scale(1.3);}
+    .elfsight-embed-wrap{margin-bottom:1.5rem;min-height:200px;}
+    .review-links{display:flex;justify-content:center;gap:1.5rem;margin-top:1.5rem;}
+    .review-link{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fl);font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:.5rem 1.25rem;transition:color var(--dur) var(--ease),border-color var(--dur) var(--ease);}
+    .review-link:hover{color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.28);}
+
+    /* ══════════════════════════════════
+       LOCATION  bg:#13100a  (dark amber)
+    ══════════════════════════════════ */
+    .location{background:#0b1420;padding:var(--sec) 0;}
+    .location-inner{display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start;}
+    .location-left .eyebrow{color:var(--blue);}
+    .location-left .h2{color:#fff;margin-bottom:1.5rem;}
+    .loc-detail{display:flex;align-items:flex-start;gap:.875rem;margin-bottom:1.25rem;}
+    .loc-detail svg{width:20px;height:20px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:.15rem;}
+    .loc-detail strong{color:#fff;display:block;font-family:var(--fl);font-weight:700;font-size:.875rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.2rem;}
+    .loc-detail p{font-size:.9375rem;color:rgba(255,255,255,.65);line-height:1.6;}
+    .mobile-fee-box{margin-top:1.75rem;background:rgba(51,100,245,.08);border:1px solid rgba(51,100,245,.25);border-radius:10px;padding:1.25rem 1.5rem;}
+    .mobile-fee-box h4{font-family:var(--fl);font-weight:700;font-size:.875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin-bottom:.5rem;}
+    .mobile-fee-box p{font-size:.875rem;color:rgba(255,255,255,.6);line-height:1.65;}
+    .map-wrapper{position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08);}
+    .map-wrapper iframe{width:100%;height:380px;display:block;border:none;filter:grayscale(20%) contrast(1.05);}
+    .map-open-btn{position:absolute;bottom:1rem;right:1rem;display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fl);font-weight:700;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;background:rgba(11,20,32,.88);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:.55rem 1rem;transition:background var(--dur) var(--ease);}
+    .map-open-btn:hover{background:rgba(20,35,58,.96);}
+    .map-open-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+    /* ══════════════════════════════════
+       FAQ  bg:#060c1c  (dark steel blue)
+    ══════════════════════════════════ */
+    .faq{background:#060c1c;padding:var(--sec) 0;}
+    .faq-inner{display:grid;grid-template-columns:1fr 1.6fr;gap:5rem;align-items:start;}
+    .faq-left .eyebrow{color:var(--blue);}
+    .faq-left .h2{color:#fff;margin-bottom:.875rem;}
+    .faq-left>p{font-size:.9375rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:2rem;}
+    .faq-list{display:flex;flex-direction:column;gap:.75rem;}
+    .faq-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;overflow:hidden;}
+    .faq-q{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;font-family:var(--fl);font-weight:700;font-size:1rem;letter-spacing:.02em;color:#fff;cursor:pointer;gap:1rem;user-select:none;list-style:none;}
+    .faq-q::-webkit-details-marker{display:none;}
+    .faq-toggle{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.125rem;color:var(--blue);transition:transform var(--dur) var(--spring),background var(--dur) var(--ease),color var(--dur) var(--ease);}
+    details[open] .faq-toggle{transform:rotate(45deg);background:var(--blue);color:#fff;}
+    .faq-a{padding:0 1.5rem 1.25rem;font-size:.9375rem;color:rgba(255,255,255,.65);line-height:1.7;}
+
+    /* ══════════════════════════════════
+       CONTACT  bg:#0d0a14  (dark plum)
+    ══════════════════════════════════ */
+    .contact{background:#070a14;padding:var(--sec) 0;}
+    .contact-heading{text-align:center;margin-bottom:2.75rem;}
+    .contact-heading .eyebrow{color:var(--blue);}
+    .contact-heading .h2{color:#fff;margin-bottom:.5rem;}
+    .contact-required{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:.06em;color:rgba(255,255,255,.3);}
+    .contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+    .contact-details{display:flex;flex-direction:column;gap:1rem;margin-top:1.25rem;}
+    .contact-detail{display:flex;align-items:center;gap:.875rem;}
+    .contact-detail svg{width:20px;height:20px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+    .contact-detail span{font-size:.9375rem;color:rgba(255,255,255,.65);}
+    /* form */
+    .cta-form{display:flex;flex-direction:column;gap:1rem;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .form-group{display:flex;flex-direction:column;gap:.375rem;}
+    .form-group label,.services-select-label{font-family:var(--fl);font-weight:600;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+    .services-select-label{display:block;margin-bottom:.5rem;}
+    .form-group input,.form-group textarea{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:6px;padding:.75rem 1rem;font-family:var(--fb);font-size:.9375rem;color:#fff;outline:none;width:100%;transition:border-color var(--dur) var(--ease),background var(--dur) var(--ease);}
+    .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,.28);}
+    .form-group input:focus,.form-group textarea:focus{border-color:var(--blue);background:rgba(51,100,245,.09);}
+    .form-group textarea{resize:vertical;min-height:100px;}
+    /* photo drop zone */
+    .photo-drop{border:1.5px dashed rgba(255,255,255,.16);border-radius:10px;padding:1.5rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;cursor:pointer;transition:border-color .2s,background .2s;text-align:center;}
+    .photo-drop:hover,.photo-drop.drag-over{border-color:rgba(51,100,245,.6);background:rgba(51,100,245,.07);}
+    .photo-drop-txt{font-size:.875rem;color:rgba(255,255,255,.4);} .photo-drop-txt em{font-style:normal;color:rgba(51,100,245,.8);}
+    .photo-drop-sub{font-size:.75rem;color:rgba(255,255,255,.22);}
+    #photo-preview{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.6rem;justify-content:center;}
+    #photo-preview img{width:58px;height:58px;object-fit:cover;border-radius:6px;border:1px solid rgba(255,255,255,.12);}
+    /* pill multi-select */
+    .services-checks{display:flex;flex-wrap:wrap;gap:.5rem;}
+    .svc-check{cursor:pointer;}
+    .svc-check input{display:none;}
+    .svc-check-pill{display:inline-block;font-family:var(--fl);font-weight:600;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;padding:.45rem 1rem;border-radius:100px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.6);transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease);user-select:none;}
+    .svc-check input:checked + .svc-check-pill{background:rgba(51,100,245,.28);border-color:rgba(51,100,245,.6);color:#fff;}
+
+    /* ══════════════════════════════════
+       FOOTER  bg:#030304
+    ══════════════════════════════════ */
+    .footer{background:#030304;border-top:1px solid rgba(255,255,255,.07);padding:2rem 0;}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;}
+    .footer-logo img{height:34px;width:auto;display:block;object-fit:contain;}
+    .footer-nav{display:flex;gap:1.75rem;}
+    .footer-nav a{font-family:var(--fl);font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.32);transition:color var(--dur) var(--ease);}
+    .footer-nav a:hover{color:rgba(255,255,255,.7);}
+    .footer-copy{font-size:.8125rem;color:rgba(255,255,255,.22);}
+
+    /* ══════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════ */
+    /* ══════════════════════════════════
+       VISUAL EDITOR
+    ══════════════════════════════════ */
+    body.ed-on { caret-color: #3364F5; }
+    body.ed-on img:not(.loader-logo):not([src="mirsky_transparent.png"]) { cursor: grab; transition: none !important; }
+    body.ed-on img:not(.loader-logo):not([src="mirsky_transparent.png"]):active { cursor: grabbing; }
+    body.ed-on [contenteditable="true"] { outline: 1.5px dashed rgba(51,100,245,.55) !important; outline-offset: 2px; border-radius: 2px; cursor: text !important; min-width: 4px; }
+    /* Section reorder mode */
+    body.ed-sections-on section, body.ed-sections-on .highlights, body.ed-sections-on .compare { outline: 1px dashed rgba(255,255,255,.12); outline-offset: -1px; }
+    .ed-section-ctrl { display:none; position:absolute; top:.75rem; right:.75rem; z-index:500; flex-direction:column; gap:.3rem; }
+    body.ed-sections-on .ed-section-ctrl { display:flex; }
+    .ed-sec-btn { width:32px; height:32px; background:rgba(8,12,28,.9); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.15); border-radius:7px; color:rgba(255,255,255,.65); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:.9rem; transition:background .18s,color .18s,border-color .18s; }
+    .ed-sec-btn:hover { background:rgba(51,100,245,.35); border-color:rgba(51,100,245,.6); color:#fff; }
+    /* Resize + move handles – styles now inline in HTML, just override display */
+    #ed-resize-se, #ed-resize-s, #ed-move-hdl { position:absolute; z-index:8410; }
+    /* Photo panel styles */
+    .ep-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:.28rem; }
+    .ep-lbl { font-family:'Barlow Condensed',sans-serif; font-size:.67rem; letter-spacing:.09em; text-transform:uppercase; color:rgba(255,255,255,.42); }
+    .ep-val { font-family:'Barlow Condensed',sans-serif; font-size:.67rem; font-weight:700; color:rgba(51,100,245,.9); }
+    .ep-sl { width:100%; accent-color:#3364F5; margin-bottom:.85rem; cursor:pointer; }
+    .ep-btn { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; padding:.38rem .9rem; border-radius:7px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.07); color:rgba(255,255,255,.75); cursor:pointer; transition:background .15s; width:100%; }
+    .ep-btn:hover { background:rgba(255,255,255,.15); color:#fff; }
+    .ep-btn-blue { background:rgba(51,100,245,.28); border-color:rgba(51,100,245,.55); color:#fff; }
+    .ep-btn-blue:hover { background:rgba(51,100,245,.5); }
+    /* Multi-select outlines */
+    .ed-multi-ovl { position:absolute; pointer-events:none; z-index:8390; border:2px dashed rgba(51,100,245,.75); border-radius:5px; }
+
+    /* ══════════════════════════════════
+       LOADING SCREEN
+    ══════════════════════════════════ */
+    #page-loader{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#06070e;transition:opacity .85s cubic-bezier(.16,1,.3,1),visibility .85s cubic-bezier(.16,1,.3,1);}
+    #page-loader.loader-out{opacity:0;visibility:hidden;pointer-events:none;}
+    .loader-bg{position:absolute;inset:0;background:url('detailing_photos/IMG_3329.jpeg') center 58%/cover no-repeat;filter:brightness(.22) saturate(.55);}
+    .loader-vignette{position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(6,7,14,.25) 0%,rgba(6,7,14,.98) 100%);}
+    .loader-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:1.5rem;}
+    /* Logo wrap with animated radar rings */
+    .loader-logo-wrap{position:relative;display:flex;align-items:center;justify-content:center;width:300px;height:300px;}
+    .loader-ring{position:absolute;border:1.5px solid rgba(51,100,245,.5);border-radius:50%;width:100%;height:100%;animation:loaderRing 2.6s ease-out infinite;}
+    .loader-ring:nth-child(2){animation-delay:.87s;}
+    .loader-ring:nth-child(3){animation-delay:1.73s;}
+    @keyframes loaderRing{0%{transform:scale(.55);opacity:.75;}100%{transform:scale(1.25);opacity:0;}}
+    .loader-logo{position:relative;width:270px;filter:drop-shadow(0 0 40px rgba(51,100,245,.7)) drop-shadow(0 0 90px rgba(51,100,245,.25));animation:loaderLogoIn .7s cubic-bezier(.22,1,.36,1) both;}
+    @keyframes loaderLogoIn{0%{opacity:0;transform:scale(.88) translateY(12px);}100%{opacity:1;transform:scale(1) translateY(0);}}
+    .loader-bottom{display:flex;flex-direction:column;align-items:center;gap:.55rem;}
+    .loader-tagline{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.38);animation:loaderFadeIn .6s .3s ease both;}
+    @keyframes loaderFadeIn{0%{opacity:0;transform:translateY(6px);}100%{opacity:1;transform:none;}}
+    .loader-pct-row{display:flex;align-items:center;gap:.75rem;}
+    .loader-pct{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.06em;color:rgba(51,100,245,.85);min-width:3.5ch;text-align:right;}
+    .loader-progress{width:220px;height:4px;background:rgba(255,255,255,.08);border-radius:100px;overflow:hidden;position:relative;}
+    .loader-fill{height:100%;background:linear-gradient(90deg,#2a4fd6 0%,#3364F5 50%,#7aa6ff 100%);border-radius:100px;width:0;animation:loaderFill 1.6s cubic-bezier(.25,.1,.25,1) forwards;box-shadow:0 0 18px rgba(51,100,245,.9);position:relative;}
+    .loader-fill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.55) 50%,transparent 100%);animation:loaderShimmer 1.4s ease-in-out .15s 1;}
+    @keyframes loaderFill{0%{width:0;}100%{width:100%;}}
+    @keyframes loaderShimmer{0%{transform:translateX(-200%);}100%{transform:translateX(300%);}}
+
+    /* ══════════════════════════════════
+       SERVICE AREA STRIP (location)
+    ══════════════════════════════════ */
+    .service-area-strip{display:grid;grid-template-columns:1.1fr 1fr;gap:3.5rem;align-items:center;margin-top:4rem;padding-top:3.5rem;border-top:1px solid rgba(255,255,255,.08);}
+    .sas-img-wrap{position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.1);box-shadow:0 20px 60px rgba(0,0,0,.5);}
+    .sas-img-wrap img{width:100%;display:block;}
+    .sas-badge{position:absolute;top:.875rem;left:.875rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;background:var(--blue);color:#fff;padding:.3rem .9rem;border-radius:100px;box-shadow:0 4px 16px rgba(51,100,245,.4);}
+    .sas-text .eyebrow{color:var(--blue);}
+    .sas-text h3{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:#fff;letter-spacing:.03em;margin-bottom:.875rem;line-height:1.04;}
+    .sas-text>p{font-size:.9375rem;color:rgba(255,255,255,.65);line-height:1.72;margin-bottom:1.5rem;}
+    .area-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.125rem;}
+    .area-tag{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;padding:.4rem 1rem;border-radius:100px;background:rgba(51,100,245,.1);border:1px solid rgba(51,100,245,.28);color:rgba(255,255,255,.82);}
+    .area-note{font-size:.8rem;color:rgba(255,255,255,.3);font-style:italic;line-height:1.6;}
+
+    /* ══════════════════════════════════
+       BRAND MOMENT (before FAQ)
+    ══════════════════════════════════ */
+    .brand-moment{position:relative;overflow:hidden;}
+    .brand-moment-img{width:100%;height:360px;object-fit:cover;object-position:center 42%;display:block;filter:brightness(.48) saturate(.75);}
+    .brand-moment-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(6,12,28,.94) 0%,rgba(6,12,28,.55) 55%,transparent 100%);display:flex;align-items:center;}
+    .brand-moment-content{padding:0 var(--cpad);max-width:var(--cmax);margin:0 auto;width:100%;}
+    .brand-moment-content .eyebrow{color:var(--blue);margin-bottom:1rem;}
+    .brand-moment-content p{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.25rem;letter-spacing:.02em;color:rgba(255,255,255,.82);line-height:1.55;max-width:520px;}
+
+    /* ══════════════════════════════════
+       CONTACT PHOTO CARD
+    ══════════════════════════════════ */
+    .contact-photo-card{border-radius:16px;overflow:hidden;margin-bottom:1.25rem;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+    .contact-photo-card img{width:100%;height:300px;object-fit:cover;object-position:center 12%;display:block;}
+    .contact-photo-msg{padding:.25rem 0 0;}
+    .contact-photo-msg strong{font-family:'Bebas Neue',sans-serif;font-size:1.375rem;letter-spacing:.04em;color:#fff;display:block;margin-bottom:.35rem;}
+    .contact-photo-msg p{font-size:.875rem;color:rgba(255,255,255,.62);line-height:1.65;}
+
+    @media(max-width:1280px){.arrow-prev{left:8px;}.arrow-next{right:8px;}}
+    @media(max-width:960px){
+      :root{--sec:64px;--cpad:20px;}
+      .nav-left a:last-child{display:none;}
+      .services-main{grid-template-columns:1fr;gap:1rem;}
+      .addons-grid{grid-template-columns:1fr 1fr;}
+      .about-inner{grid-template-columns:1fr;gap:3rem;}
+      .compare-table{grid-template-columns:1fr 1fr;gap:.5rem;}
+      .compare-label,.compare-col-empty{display:none;}
+      .about-stats{gap:1.5rem;}
+      .steps{grid-template-columns:1fr;}
+      .work-strip-item{width:240px;height:185px;}
+      .review-card{flex:0 0 calc(50% - .625rem);}
+      .location-inner{grid-template-columns:1fr;gap:2.5rem;}
+      .service-area-strip{grid-template-columns:1fr;gap:2rem;}
+      .brand-moment-img{height:280px;}
+      .faq-inner{grid-template-columns:1fr;gap:2.5rem;}
+      .contact-inner{grid-template-columns:1fr;gap:2.5rem;}
+      .footer-inner{flex-direction:column;gap:1.5rem;text-align:center;}
+      .footer-nav{flex-wrap:wrap;justify-content:center;}
+      .highlights-inner{flex-direction:column;gap:.875rem;}
+      .hl-div{width:40px;height:1px;}
+      .team-flip-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:600px){
+      .hero-logo{width:220px;}
+      .services-main{grid-template-columns:1fr;}
+      .addons-grid{grid-template-columns:1fr 1fr;}
+      .review-card{flex:0 0 100%;}
+      .work-strip-item{width:190px;height:155px;}
+      .form-row{grid-template-columns:1fr;}
+      .team-flip-grid{grid-template-columns:1fr 1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     LOADING SCREEN
+══════════════════════════════════ -->
+<div id="page-loader">
+  <div class="loader-bg"></div>
+  <div class="loader-vignette"></div>
+  <div class="loader-content">
+    <div class="loader-logo-wrap">
+      <div class="loader-ring"></div>
+      <div class="loader-ring"></div>
+      <div class="loader-ring"></div>
+      <img class="loader-logo" src="mirsky_transparent.png" alt="Mirsky Auto Detailing">
+    </div>
+    <div class="loader-bottom">
+      <div class="loader-tagline">Seattle's Premier Auto Detailing</div>
+      <div class="loader-pct-row">
+        <div class="loader-progress"><div class="loader-fill"></div></div>
+        <div class="loader-pct" id="loader-pct">0%</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     HEADER
+══════════════════════════════════ -->
+<header class="header">
+  <div class="c">
+    <div class="header-inner">
+
+      <nav class="nav-left">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="tel:2064709450" class="nav-phone-link">(206) 470-9450</a>
+      </nav>
+
+      <div class="header-logo">
+        <a href="#home"><img src="mirsky_transparent.png" alt="Mirsky Auto Detailing"></a>
+      </div>
+
+      <nav class="nav-right">
+        <a href="https://www.instagram.com/mirskyautodetailing/" target="_blank" class="nav-icon" aria-label="Instagram">
+          <div class="nav-icon-btn">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </div>
+          <span class="nav-icon-label">Instagram</span>
+        </a>
+        <a href="#work" class="nav-icon" aria-label="Our Work">
+          <div class="nav-icon-btn">
+            <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <span class="nav-icon-label">Our Work</span>
+        </a>
+        <a href="#faq" class="nav-icon" aria-label="FAQ">
+          <div class="nav-icon-btn">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <span class="nav-icon-label">FAQ</span>
+        </a>
+      </nav>
+
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-logo">
+      <img src="mirsky_transparent.png" alt="Mirsky Auto Detailing">
+    </div>
+    <div class="hero-actions">
+      <a href="https://book.squareup.com/appointments/9o0hav4bov1g21/location/L7TDX2MP00WQ1/services" target="_blank" class="btn-glass btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Book Now
+      </a>
+      <a href="#contact" class="btn-glass btn-outline-glass">Contact Us</a>
+    </div>
+  </div>
+  <div class="hero-arrow">
+    <span>Scroll</span>
+    <div class="arrow-bare">
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     HIGHLIGHTS BAR
+══════════════════════════════════ -->
+<div class="highlights">
+  <div class="c">
+    <div class="highlights-inner">
+      <div class="hl-item">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Seattle, Washington
+      </div>
+      <div class="hl-div"></div>
+      <div class="hl-item">
+        <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        Free Quotes
+      </div>
+      <div class="hl-div"></div>
+      <div class="hl-item">
+        <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Mobile Auto Detailing
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SERVICES
+══════════════════════════════════ -->
+<section class="services" id="services">
+  <div class="c">
+    <div class="services-head">
+      <span class="eyebrow">What We Offer</span>
+      <h2 class="h2">Our Services</h2>
+      <p class="services-sub">Transparent, competitive pricing — often the best value in Seattle</p>
+    </div>
+    <div class="services-main">
+      <div class="svc-card">
+        <div class="svc-img"><img src="detailing_photos/IMG_2982.jpeg" alt="Exterior Detail" style="object-position:center 58%;"></div>
+        <div class="svc-body">
+          <div class="svc-meta"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>45 min &nbsp;·&nbsp; Request quote</div>
+          <h3>Exterior Detail</h3>
+          <p>Pre-wash and contact wash with attention to gas caps, wheel wells, and door jambs. Wheels cleaned, tires and trim dressed. Leaves your vehicle clean, sharp, and refreshed.</p>
+          <p class="svc-price-note">Starting price — varies based on vehicle size, condition, and level of soiling.</p>
+          <a href="https://book.squareup.com/appointments/9o0hav4bov1g21/location/L7TDX2MP00WQ1/services" target="_blank" class="svc-link">Book →</a>
+        </div>
+      </div>
+      <div class="svc-card featured">
+        <div class="featured-badge">Most Popular</div>
+        <div class="svc-img"><img src="detailing_photos/IMG_3329.jpeg" alt="Full Detail" style="object-position:center 60%;"></div>
+        <div class="svc-body">
+          <div class="svc-meta"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 hr 45 min &nbsp;·&nbsp; Request quote</div>
+          <h3>Full Detail</h3>
+          <p>The complete transformation. Exterior gets pre-wash, hand wash, wheels, wheel wells, gas caps, and door jambs, plus tire and trim dressing. Interior includes carpet shampoo, stain removal, extractor use (if needed), leather and vinyl conditioning, window cleaning, crevice cleaning, vacuum, and wipe-down. Finished with a light scent enhancer.</p>
+          <p class="svc-price-note">Starting price — varies based on vehicle size, pet hair, kids, and overall condition.</p>
+          <a href="https://book.squareup.com/appointments/9o0hav4bov1g21/location/L7TDX2MP00WQ1/services" target="_blank" class="svc-link">Book →</a>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-img"><img src="detailing_photos/IMG_2972.jpeg" alt="Interior Detail" style="object-position:center 42%;"></div>
+        <div class="svc-body">
+          <div class="svc-meta"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 hr &nbsp;·&nbsp; Request quote</div>
+          <h3>Interior Detail</h3>
+          <p>Thorough cleaning of all interior surfaces. Carpet shampoo, stain removal, extractor use (if needed), leather and vinyl conditioning, window cleaning, crevice cleaning, vacuum, and full wipe-down. Finished with a light scent enhancer.</p>
+          <p class="svc-price-note">Starting price — varies based on vehicle size, pet hair, kids, and overall condition.</p>
+          <a href="https://book.squareup.com/appointments/9o0hav4bov1g21/location/L7TDX2MP00WQ1/services" target="_blank" class="svc-link">Book →</a>
+        </div>
+      </div>
+    </div>
+    <div class="addons-label">Add-Ons</div>
+    <div class="addons-grid">
+      <div class="addon-card">
+        <div class="addon-price">$30</div>
+        <h4>Engine Bay Cleaning</h4>
+        <p style="font-size:.76rem;color:rgba(255,255,255,.32);margin-bottom:.4rem;">30 min</p>
+        <p>Cleans and dresses the engine compartment safely. Improved appearance, helps with resale and inspections.</p>
+      </div>
+      <div class="addon-card">
+        <div class="addon-price">$20</div>
+        <h4>Sealant</h4>
+        <p style="font-size:.76rem;color:rgba(255,255,255,.32);margin-bottom:.4rem;">30 min</p>
+        <p>Spray-on, rinse-off sealant adds instant gloss and hydrophobic protection lasting 1–3 months.</p>
+      </div>
+      <div class="addon-card">
+        <div class="addon-price">$20</div>
+        <h4>Clay Bar Service</h4>
+        <p style="font-size:.76rem;color:rgba(255,255,255,.32);margin-bottom:.4rem;">30 min</p>
+        <p>Removes bonded contaminants for a smooth, glass-like finish. Ideal before waxing or polishing.</p>
+        <p class="addon-combo-note">Clay Bar + Sealant together: $30</p>
+      </div>
+      <div class="addon-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:rgba(51,100,245,.05);border-color:rgba(51,100,245,.16);">
+        <p style="font-size:.78rem;color:rgba(255,255,255,.3);margin-bottom:.5rem;font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase;font-weight:600;">Want something else?</p>
+        <a href="#contact" class="svc-link" style="margin-top:0;">Ask Us →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     ABOUT / OUR STORY
+══════════════════════════════════ -->
+<section class="about" id="about">
+  <div class="c">
+    <div class="about-inner">
+      <!-- Left: story text -->
+      <div class="about-left">
+        <span class="eyebrow">Our Story</span>
+        <h2 class="h2">Built by Two Teenagers Who Genuinely Care</h2>
+        <p><strong>Dylan started Mirsky Auto Detailing at 14 years old</strong> — not with a shop or a large budget, but with a strong drive to do things right the first time. He began with interior detailing as his core focus, learning the craft properly before expanding. As his technique sharpened, so did his reputation. Word spread through the neighborhood fast.</p>
+        <p>By year two, the demand outgrew what one person could handle. <strong>Cormack joined as co-owner</strong>, bringing the same obsession with quality and a natural feel for the work. Together, they've built something real — a brand backed by genuine results, loyal customers, and a standard they hold themselves to on every single job.</p>
+        <p>This isn't a side hustle or a corporate franchise. It's our business, our name, and our reputation on the line every time we show up. That's exactly why we don't cut corners.</p>
+        <div class="about-value-note">
+          <p>As a locally-owned operation without the overhead of a large shop, we're able to offer <strong>genuinely competitive pricing — often significantly less than what bigger detailers charge</strong> for the same quality of work. No hidden fees. No inflated quotes. Just honest detailing, fairly priced.</p>
+        </div>
+        <div class="about-stats">
+          <div class="about-stat">
+            <strong>80+</strong>
+            <span>Cars Detailed</span>
+          </div>
+          <div style="width:1px;background:rgba(255,255,255,.1);align-self:stretch;"></div>
+          <div class="about-stat">
+            <strong>3</strong>
+            <span>Years in Business</span>
+          </div>
+          <div style="width:1px;background:rgba(255,255,255,.1);align-self:stretch;"></div>
+          <div class="about-stat">
+            <div class="about-stat-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+            <strong style="font-size:2rem;">5/5</strong>
+            <span>Average Rating</span>
+          </div>
+        </div>
+      </div>
+      <!-- Right: flip photo cards only -->
+      <div class="about-right">
+        <div class="team-flip-grid">
+          <!-- Dylan flip card -->
+          <div class="flip-card">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <img src="1779125764309.png" alt="Dylan Mirsky" style="object-position:center 18%;">
+                <div class="flip-label">
+                  <strong>Dylan</strong>
+                  <span>Founder &amp; Co-Owner</span>
+                </div>
+                <div class="flip-hint">Hover to flip</div>
+              </div>
+              <div class="flip-back">
+                <img src="dylanrdetailing-alternativeheadshot.jpg" alt="Dylan at work" style="object-position:0% 50%; transform:scale(1.0); transform-origin:200% 100%;">
+                <div class="flip-label" style="background:linear-gradient(to top,rgba(5,5,15,.95) 0%,rgba(5,5,15,.6) 60%,transparent 100%);">
+                  <strong>Dylan</strong>
+                  <span>On the job</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Cormack flip card -->
+          <div class="flip-card">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <img src="ChatGPT Image May 21, 2026, 11_28_48 PM.png" alt="Cormack" style="object-position:center 22%;">
+                <div class="flip-label">
+                  <strong>Cormack</strong>
+                  <span>Co-Owner</span>
+                </div>
+                <div class="flip-hint">Hover to flip</div>
+              </div>
+              <div class="flip-back">
+                <img src="detailing_photos/IMG_3297.jpeg" alt="Cormack washing Porsche" style="object-position:20% 28%; transform:scale(1); transform-origin:50% 63%;">
+                <div class="flip-label" style="background:linear-gradient(to top,rgba(5,5,15,.95) 0%,rgba(5,5,15,.6) 60%,transparent 100%);">
+                  <strong>Cormack</strong>
+                  <span>On the job</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     COMPARISON: CAR WASH VS MIRSKY
+══════════════════════════════════ -->
+<section class="compare" id="why-us">
+  <div class="c">
+    <div class="compare-head">
+      <span class="eyebrow">The Mirsky Difference</span>
+      <h2 class="h2">Car Wash vs. Mirsky Detailing</h2>
+      <p>A tunnel wash gets your car wet. We get it <em>clean</em> — inside and out, by hand, every time.</p>
+    </div>
+    <div class="compare-table">
+      <!-- Header row: empty label col, bad header, good header -->
+      <div class="compare-col-empty"></div>
+      <div class="compare-col-bad">
+        <div class="compare-col-header">
+          <span class="compare-not-rec">Not Recommended</span>
+          <strong>Tunnel Car Wash</strong>
+        </div>
+      </div>
+      <div class="compare-col-good">
+        <div class="compare-col-header">
+          <span class="compare-rec">Recommended</span>
+          <strong>Mirsky Auto Detailing</strong>
+        </div>
+      </div>
+      <!-- Row 1: Paint Damage -->
+      <div class="compare-label">Paint Damage</div>
+      <div class="compare-cell bad"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg><span>Harsh brushes leave scratches &amp; swirl marks across every panel — permanently</span></div>
+      <div class="compare-cell good"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg><span>Hand wash only — zero brush contact, zero new scratches</span></div>
+      <!-- Row 2: Interior Clean -->
+      <div class="compare-label">Interior Clean</div>
+      <div class="compare-cell bad"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg><span>Interior untouched — vacuuming is on you, at a coin-op station</span></div>
+      <div class="compare-cell good"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg><span>Full interior detail — shampoo, vacuum, wipe-down, scent</span></div>
+      <!-- Row 3: Ease of Use -->
+      <div class="compare-label">Ease of Use</div>
+      <div class="compare-cell bad"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg><span>You drive there, wait in line, drive back</span></div>
+      <div class="compare-cell good"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg><span>We come to your home or office</span></div>
+      <!-- Row 4: Clay Bar -->
+      <div class="compare-label">Clay Bar</div>
+      <div class="compare-cell bad"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg><span>No clay bar used — ever</span></div>
+      <div class="compare-cell good"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg><span>Clay bar decontamination every time</span></div>
+      <!-- Row 5: Quality -->
+      <div class="compare-label">Quality</div>
+      <div class="compare-cell bad"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg><span>Same automated result every time, regardless of condition</span></div>
+      <div class="compare-cell good"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg><span>5-star service — your car given back better than when you bought it</span></div>
+      <!-- Row 6: Environmental Impact -->
+      <div class="compare-label">Environment</div>
+      <div class="compare-cell bad"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg><span>Up to 50 gallons of water per wash — chemical runoff into storm drains</span></div>
+      <div class="compare-cell good"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg><span>Only 5 gallons per wash — 90% less water, eco-conscious products</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     HOW TO BOOK
+══════════════════════════════════ -->
+<section class="how-to-book" id="book">
+  <div class="c">
+    <div class="htb-head">
+      <span class="eyebrow">Getting Started</span>
+      <h2 class="h2">How to Book</h2>
+      <p>Easy, quick, no hassle. Here's how to get your car detailed.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Choose Your Service</h3>
+        <p>Browse our services above — exterior, interior, full detail, or an add-on. Not sure what you need? Text us and we'll help you figure it out.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Book Online or Text Us</h3>
+        <p>Schedule instantly via our booking link below, or text <a href="sms:2064709450" style="color:#6b9aff;font-weight:600;">(206) 470-9450</a> and we'll get you set up. We respond fast.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Come to Us or We Come to You</h3>
+        <p>Drop off at 4404 55th Ave NE at no extra charge, or we'll come to you for a flat $30 mobile fee. Same great work, your choice.</p>
+      </div>
+    </div>
+    <p style="text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:.8rem;letter-spacing:.06em;color:rgba(255,255,255,.3);margin-bottom:1.75rem;">A <strong style="color:rgba(255,255,255,.45);">$30 no-show fee</strong> applies to missed appointments without 24-hour notice.</p>
+    <div class="book-ctas">
+      <a href="https://book.squareup.com/appointments/9o0hav4bov1g21/location/L7TDX2MP00WQ1/services" target="_blank" class="btn-solid">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Book Now
+      </a>
+      <a href="sms:2064709450" class="btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        Text / Call Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     PORTFOLIO
+══════════════════════════════════ -->
+<section class="work" id="work">
+  <div class="c">
+    <div class="work-head">
+      <div><span class="eyebrow">Portfolio</span><h2 class="h2">Recent Projects</h2></div>
+      <a href="https://book.squareup.com/appointments/9o0hav4bov1g21/location/L7TDX2MP00WQ1/services" target="_blank" class="btn-ghost">Book Your Detail</a>
+    </div>
+  </div>
+  <div class="work-strips">
+    <div class="work-strip-row work-strip-left">
+      <div class="work-strip-item"><img src="detailing_photos/IMG_3329.jpeg" alt="Full Detail" style="object-position:center 60%;"></div>
+      <div class="work-strip-item"><img src="detailing_photos/IMG_3316.jpeg" alt="Interior Detail" style="object-position:center 42%;"></div>
+      <div class="work-strip-item"><img src="detailing_photos/IMG_2883.jpg" alt="Detail" style="object-position:center 50%;"></div>
+      <div class="work-strip-item"><img src="detailing_photos/IMG_4131.jpeg" alt="BMW iX Detail" style="object-position:center 62%;"></div>
+      <div class="work-strip-item"><img src="detailing_photos/IMG_1663.PNG" alt="Auto Detail" style="object-position:center 50%;"></div>
+      <div class="work-strip-item"><img src="detailing_photos/IMG_2674.jpeg" alt="Exterior Detail" style="object-position:center 58%;"></div>
+      <div class="work-strip-item"><img src="detailing_photos/IMG_9321.jpeg" alt="Detail" style="object-position:center 50%;"></div>
+      <div class="work-strip-item"><img src="detailing_photos/IMG_3303.jpeg" alt="Porsche 911 Front" style="object-position:center 55%;"></div>
+      <div class="work-strip-item"><img src="detailing_photos/IMG_1290.jpeg" alt="Auto Detail" style="object-position:center 50%;"></div>
+      <div class="work-strip-item"><img src="detailing_photos/IMG_2992.jpeg" alt="Full Detail" style="object-position:center 60%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_3329.jpeg" alt="" style="object-position:center 60%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_3316.jpeg" alt="" style="object-position:center 42%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_2883.jpg" alt="" style="object-position:center 50%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_4131.jpeg" alt="" style="object-position:center 62%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_1663.PNG" alt="" style="object-position:center 50%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_2674.jpeg" alt="" style="object-position:center 58%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_9321.jpeg" alt="" style="object-position:center 50%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_3303.jpeg" alt="" style="object-position:center 55%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_1290.jpeg" alt="" style="object-position:center 50%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_2992.jpeg" alt="" style="object-position:center 60%;"></div>
+    </div>
+    <div class="work-strip-row work-strip-right">
+      <div class="work-strip-item"><img src="detailing_photos/IMG_2972.jpeg" alt="Interior Detail" style="object-position:center 42%;"></div>
+      <div class="work-strip-item"><img src="detailing_photos/IMG_4145.jpeg" alt="Porsche 718 GTS" style="object-position:center 65%;"></div>
+      <div class="work-strip-item"><img src="detailing_photos/IMG_1304.jpeg" alt="Auto Detail" style="object-position:center 50%;"></div>
+      <div class="work-strip-item"><img src="detailing_photos/IMG_2665.jpeg" alt="Toyota GR86 Silver" style="object-position:center 52%;"></div>
+      <div class="work-strip-item"><img src="detailing_photos/IMG_9323.jpeg" alt="Detail" style="object-position:center 50%;"></div>
+      <div class="work-strip-item"><img src="detailing_photos/IMG_3297.jpeg" alt="Mobile Detail" style="object-position:28% 48%;"></div>
+      <div class="work-strip-item"><img src="detailing_photos/IMG_2564.jpeg" alt="Detail" style="object-position:center 50%;"></div>
+      <div class="work-strip-item"><img src="detailing_photos/165DE9A9-F881-446E-8D95-DAB5737E2F66.JPG" alt="Full Foam Wash" style="object-position:center 50%;"></div>
+      <div class="work-strip-item"><img src="detailing_photos/IMG_2982.jpeg" alt="Exterior Detail" style="object-position:center 58%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_2972.jpeg" alt="" style="object-position:center 42%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_4145.jpeg" alt="" style="object-position:center 65%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_1304.jpeg" alt="" style="object-position:center 50%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_2665.jpeg" alt="" style="object-position:center 52%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_9323.jpeg" alt="" style="object-position:center 50%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_3297.jpeg" alt="" style="object-position:28% 48%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_2564.jpeg" alt="" style="object-position:center 50%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/165DE9A9-F881-446E-8D95-DAB5737E2F66.JPG" alt="" style="object-position:center 50%;"></div>
+      <div class="work-strip-item" aria-hidden="true"><img src="detailing_photos/IMG_2982.jpeg" alt="" style="object-position:center 58%;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     REVIEWS CAROUSEL
+══════════════════════════════════ -->
+<section class="reviews">
+  <div class="c">
+    <div class="reviews-head">
+      <span class="eyebrow">What Clients Say</span>
+      <h2 class="h2">Trusted by Seattle Drivers</h2>
+      <p>Real reviews from real customers.</p>
+    </div>
+    <div class="carousel-wrapper">
+      <button class="carousel-arrow arrow-prev" id="prevBtn" aria-label="Previous">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="carousel-outer">
+        <div class="carousel-track" id="reviewTrack">
+
+          <div class="review-card">
+            <div class="review-stars"><div class="review-stars-icons"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><span class="review-stars-score">5/5</span></div>
+            <blockquote>"OMG! The attention to detail is off the charts. My car looks better than it did new — it's ridiculous. Strongly recommend. No headache, no fuss, just great work!"</blockquote>
+            <div class="review-author"><div class="review-avatar">SP</div><div class="review-meta"><strong>Scott P.</strong><span>Google · 41 weeks ago</span></div></div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars"><div class="review-stars-icons"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><span class="review-stars-score">5/5</span></div>
+            <blockquote>"Dylan did a spectacular job detailing the inside and outside of my car. He was very professional, kind, patient, and thorough. Highly recommend."</blockquote>
+            <div class="review-author"><div class="review-avatar">BT</div><div class="review-meta"><strong>Bilkay T.</strong><span>Google · 43 weeks ago</span></div></div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars"><div class="review-stars-icons"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><span class="review-stars-score">5/5</span></div>
+            <blockquote>"We had a full detail of a car used for soccer carpools, dog transport, and teenagers. It came back shiny, clean, and smelling great. Incredibly reasonable pricing and very responsive."</blockquote>
+            <div class="review-author"><div class="review-avatar">PH</div><div class="review-meta"><strong>P H.</strong><span>Yelp · Seattle, WA · Jul 2025</span></div></div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars"><div class="review-stars-icons"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><span class="review-stars-score">5/5</span></div>
+            <blockquote>"My car was so dirty — spilled milkshakes from my kids everywhere. I couldn't believe it when I got it back. Every inch was clean, even the smallest crevice. The employees were kind and respectful."</blockquote>
+            <div class="review-author"><div class="review-avatar">MM</div><div class="review-meta"><strong>Morva M.</strong><span>Yelp · Seattle, WA · Jul 2025</span></div></div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars"><div class="review-stars-icons"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><span class="review-stars-score">5/5</span></div>
+            <blockquote>"These guys are the best! Completely professional, very thorough. Worth every penny! Highly recommend."</blockquote>
+            <div class="review-author"><div class="review-avatar">LB</div><div class="review-meta"><strong>Laura B.</strong><span>Yelp · Seattle, WA · Sep 2025</span></div></div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars"><div class="review-stars-icons"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><span class="review-stars-score">5/5</span></div>
+            <blockquote>"Dylan did an excellent job detailing the inside and outside of my vehicle. He was on time and finished in a timely fashion."</blockquote>
+            <div class="review-author"><div class="review-avatar">LP</div><div class="review-meta"><strong>L Pasc</strong><span>Google · 46 weeks ago</span></div></div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars"><div class="review-stars-icons"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><span class="review-stars-score">5/5</span></div>
+            <blockquote>"Very professional. Clear and prompt communication."</blockquote>
+            <div class="review-author"><div class="review-avatar">AP</div><div class="review-meta"><strong>Alex P.</strong><span>Google · 45 weeks ago</span></div></div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars"><div class="review-stars-icons"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><span class="review-stars-score">5/5</span></div>
+            <blockquote>"Will definitely be a return customer."</blockquote>
+            <div class="review-author"><div class="review-avatar">RJ</div><div class="review-meta"><strong>Rhonda J.</strong><span>Google · 43 weeks ago</span></div></div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars"><div class="review-stars-icons"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><span class="review-stars-score">5/5</span></div>
+            <blockquote>"Outstanding attention to detail and great communication throughout. My car came back looking absolutely pristine."</blockquote>
+            <div class="review-author"><div class="review-avatar">SL</div><div class="review-meta"><strong>Soren L.</strong><span>Google · 46 weeks ago</span></div></div>
+          </div>
+
+        </div>
+      </div>
+      <button class="carousel-arrow arrow-next" id="nextBtn" aria-label="Next">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="carousel-dots" id="carouselDots"></div>
+    <div class="review-links">
+      <a href="https://www.google.com/maps/search/Mirsky+Auto+Detailing+Seattle" target="_blank" class="review-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Google Reviews
+      </a>
+      <a href="https://www.yelp.com/search?find_desc=Mirsky+Auto+Detailing&find_loc=Seattle%2C+WA" target="_blank" class="review-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>Yelp Reviews
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     LOCATION / MAP
+══════════════════════════════════ -->
+<section class="location" id="location">
+  <div class="c">
+    <div class="location-inner">
+      <div class="location-left">
+        <span class="eyebrow">Find Us</span>
+        <h2 class="h2">Visit Our Location</h2>
+        <div class="loc-detail">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><strong>Our Shop</strong><p>4404 55th Ave NE<br>Seattle, WA</p></div>
+        </div>
+        <div class="loc-detail">
+          <svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          <div><strong>Phone / Text</strong><p><a href="tel:2064709450" style="color:rgba(255,255,255,.65);">(206) 470-9450</a></p></div>
+        </div>
+        <div class="mobile-fee-box">
+          <h4>Mobile Detailing Available</h4>
+          <p>We can come to you for a <strong style="color:#6b9aff;">flat $30 mobile fee</strong>, or bring your car to us at 4404 55th Ave NE for no additional charge.</p>
+        </div>
+      </div>
+      <div class="map-wrapper">
+        <iframe src="https://maps.google.com/maps?q=4404+55th+Ave+NE+Seattle+WA+98105&output=embed&z=15&hl=en" title="Mirsky Auto Detailing Location" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a href="https://maps.apple.com/?q=4404+55th+Ave+NE+Seattle+WA+98105" target="_blank" class="map-open-btn">
+          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open in Maps
+        </a>
+      </div>
+    </div>
+
+    <!-- Service Area -->
+    <div class="service-area-strip">
+      <div class="sas-img-wrap">
+        <iframe
+          src="https://www.google.com/maps/d/embed?mid=1awCceKXeHuiPKL66w4l4Ru3acLJ8hxk&ll=47.60,-122.28&z=9&ehbc=2E312F"
+          title="Mirsky Auto Detailing Service Area"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          style="width:100%;height:340px;display:block;border:none;filter:brightness(0.88) contrast(1.04);">
+        </iframe>
+        <div class="sas-badge">Our Coverage</div>
+      </div>
+      <div class="sas-text">
+        <span class="eyebrow">Where We Work</span>
+        <h3>Greater Seattle Service Area</h3>
+        <p>We come to you across most of Seattle and the Eastside — from Shoreline in the north to Renton in the south, and east through Mercer Island, Bellevue, and Kirkland. Same great work, wherever you are.</p>
+        <div class="area-tags">
+          <span class="area-tag">Seattle</span>
+          <span class="area-tag">Shoreline</span>
+          <span class="area-tag">Bellevue</span>
+          <span class="area-tag">Kirkland</span>
+          <span class="area-tag">Mercer Island</span>
+          <span class="area-tag">Renton</span>
+        </div>
+        <p class="area-note">Not currently serving Edmonds, Snoqualmie, or Tacoma. Not sure if you're in range? Just text us — we'll let you know.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     FAQ
+══════════════════════════════════ -->
+<section class="faq" id="faq">
+  <div class="c">
+    <div class="faq-inner">
+      <div class="faq-left">
+        <span class="eyebrow">Common Questions</span>
+        <h2 class="h2">Frequently Asked Questions</h2>
+        <p>Have a question not answered here? Give us a text — we're quick to respond.</p>
+        <a href="tel:2064709450" class="btn-solid" style="margin-top:.5rem;">(206) 470-9450</a>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary class="faq-q">How long does a full detail take?<span class="faq-toggle">+</span></summary>
+          <p class="faq-a">A full detail is typically around 3 hours 45 minutes. An exterior-only takes about 45 minutes, and interior-only about 3 hours. Times vary based on vehicle size and condition — we'll always give you an honest estimate upfront.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">Do you come to me, or do I drop off?<span class="faq-toggle">+</span></summary>
+          <p class="faq-a">Both! Drop your car at 4404 55th Ave NE, Seattle — no extra charge. Or we come to you for a flat $30 mobile fee. Same quality of work either way.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">Why is there a fee for mobile service?<span class="faq-toggle">+</span></summary>
+          <p class="faq-a">Most detailers quietly fold a mobile fee into their base price — so you're paying it either way without knowing. We believe in being upfront: come to us, pay less. We come to you, the $30 covers travel time and logistics. You always know exactly where your money is going.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">Why does the price vary?<span class="faq-toggle">+</span></summary>
+          <p class="faq-a">We quote based on your actual vehicle — not a flat rate that punishes owners of clean cars. Size, condition, pet hair, kids' messes, and heavy soiling all factor in. You never overpay for a car that doesn't need extra work.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">How often should I get my car detailed?<span class="faq-toggle">+</span></summary>
+          <p class="faq-a">For most drivers, every 3 months is a solid cadence — but it really depends on how you use your car. Heavy daily drivers, families with kids, or pet owners may want every 2 months. Low-mileage or garage-kept vehicles can go 4–5 months comfortably. We'll recommend a schedule based on your situation.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">Do you offer any guarantees?<span class="faq-toggle">+</span></summary>
+          <p class="faq-a">Yes. If you're not satisfied, reach out within 48 hours and we'll make it right at no additional charge. Our reputation depends on it.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     CONTACT FORM
+══════════════════════════════════ -->
+<section class="contact" id="contact">
+  <div class="c">
+    <div class="contact-heading">
+      <span class="eyebrow">Get Started</span>
+      <h2 class="h2">Get in Touch</h2>
+      <p class="contact-required">* indicates required fields</p>
+    </div>
+    <div class="contact-inner">
+      <div class="contact-left">
+        <div class="contact-photo-card">
+          <img src="1779125764309.png" alt="Dylan Mirsky" style="object-position:center 18%;">
+        </div>
+        <div class="contact-photo-msg">
+          <strong>Hey, I'm Dylan.</strong>
+          <p>Fill out the form and I'll personally get back to you with a free quote — usually within a few hours. No pressure, no runaround.</p>
+        </div>
+        <div class="contact-details">
+          <div class="contact-detail">
+            <svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <span>(206) 470-9450</span>
+          </div>
+          <div class="contact-detail">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>4404 55th Ave NE, Seattle, WA</span>
+          </div>
+        </div>
+      </div>
+      <form class="cta-form" id="contact-form">
+        <!-- FormSubmit config -->
+        <input type="hidden" name="_subject" value="New Quote Request — Mirsky Auto Detailing">
+        <input type="hidden" name="_cc" value="2064709450@tmomail.net">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+
+        <div class="form-row">
+          <div class="form-group"><label>First Name *</label><input type="text" name="first_name" placeholder="John" required></div>
+          <div class="form-group"><label>Last Name *</label><input type="text" name="last_name" placeholder="Smith" required></div>
+        </div>
+        <div class="form-group"><label>Phone Number *</label><input type="tel" name="phone" placeholder="(206) 555-0100" required></div>
+        <div class="form-group">
+          <span class="services-select-label">Services Interested In — select all that apply</span>
+          <div class="services-checks">
+            <label class="svc-check"><input type="checkbox" name="service" value="Exterior Detail"><span class="svc-check-pill">Exterior Detail</span></label>
+            <label class="svc-check"><input type="checkbox" name="service" value="Interior Detail"><span class="svc-check-pill">Interior Detail</span></label>
+            <label class="svc-check"><input type="checkbox" name="service" value="Full Detail"><span class="svc-check-pill">Full Detail</span></label>
+            <label class="svc-check"><input type="checkbox" name="service" value="Engine Bay"><span class="svc-check-pill">Engine Bay</span></label>
+            <label class="svc-check"><input type="checkbox" name="service" value="Sealant"><span class="svc-check-pill">Sealant</span></label>
+            <label class="svc-check"><input type="checkbox" name="service" value="Clay Bar"><span class="svc-check-pill">Clay Bar</span></label>
+            <label class="svc-check"><input type="checkbox" name="service" value="Not Sure"><span class="svc-check-pill">Not Sure</span></label>
+          </div>
+        </div>
+        <div class="form-group"><label>Vehicle &amp; Additional Notes</label><textarea name="notes" placeholder="Year, make, model — condition, pet hair, kids, etc.…"></textarea></div>
+        <div class="form-group">
+          <label>Vehicle Photos <span style="color:rgba(255,255,255,.3);font-weight:400;text-transform:none;letter-spacing:0;">(optional — helps us quote accurately)</span></label>
+          <div class="photo-drop" id="photo-drop" onclick="document.getElementById('photo-input').click()">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span class="photo-drop-txt">Drag photos here or <em>browse</em></span>
+            <span class="photo-drop-sub">JPG, PNG, HEIC — up to 10 photos</span>
+            <div id="photo-preview"></div>
+          </div>
+          <input type="file" id="photo-input" name="vehicle-photos" multiple accept="image/*" style="display:none;" onchange="ED_photoPreview(this.files)">
+        </div>
+
+        <!-- Success message (hidden until submitted) -->
+        <div id="form-success" style="display:none;background:rgba(51,100,245,.12);border:1px solid rgba(51,100,245,.35);border-radius:10px;padding:1.25rem 1.5rem;text-align:center;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:#fff;letter-spacing:.04em;margin-bottom:.4rem;">Request Sent!</div>
+          <p style="font-size:.9rem;color:rgba(255,255,255,.65);margin:0;">You'll hear back from Dylan within a few hours. Check your texts too.</p>
+        </div>
+
+        <button type="submit" id="form-submit-btn" class="btn-solid" style="width:100%;justify-content:center;padding:.9rem;">Submit Request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     VISUAL EDITOR
+══════════════════════════════════ -->
+<input type="file" id="ed-file" accept="image/*" style="display:none;">
+
+<!-- Primary selection overlay -->
+<div id="ed-sel" style="display:none;position:absolute;pointer-events:none;z-index:8400;border:2px solid #3364F5;border-radius:5px;box-shadow:0 0 0 4px rgba(51,100,245,.18);"></div>
+
+<!-- Move handle (drag to translate element) -->
+<div id="ed-move-hdl" style="display:none;position:absolute;z-index:8410;width:28px;height:28px;background:rgba(51,100,245,.9);border-radius:6px;cursor:move;display:none;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.5);">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><polyline points="15 19 12 22 9 19"/><polyline points="19 9 22 12 19 15"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/></svg>
+</div>
+
+<!-- SE resize handle (corner) -->
+<div id="ed-resize-se" style="display:none;position:absolute;z-index:8410;width:14px;height:14px;background:#3364F5;border-radius:3px;cursor:se-resize;box-shadow:0 2px 6px rgba(0,0,0,.5);"></div>
+<!-- S resize handle (bottom edge) -->
+<div id="ed-resize-s" style="display:none;position:absolute;z-index:8410;width:40px;height:8px;background:#3364F5;border-radius:4px;cursor:s-resize;box-shadow:0 2px 6px rgba(0,0,0,.5);"></div>
+
+<!-- Context toolbar -->
+<div id="ed-bar" style="display:none;position:absolute;z-index:8500;background:rgba(8,12,28,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:.45rem .6rem;box-shadow:0 8px 40px rgba(0,0,0,.7);"></div>
+
+<!-- Toast notification -->
+<div id="ed-toast" style="display:none;position:fixed;bottom:5.5rem;left:50%;transform:translateX(-50%);background:rgba(8,12,28,.97);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:.55rem 1.5rem;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.7);z-index:9500;backdrop-filter:blur(12px);pointer-events:none;white-space:nowrap;"></div>
+
+<!-- Photo Properties Panel (right side) -->
+<div id="ed-photo-panel" style="display:none;position:fixed;top:54px;right:0;width:252px;height:calc(100vh - 54px);background:rgba(5,8,20,.98);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-left:1px solid rgba(51,100,245,.28);padding:1.1rem 1.1rem 2rem;overflow-y:auto;z-index:8295;">
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.07em;color:#fff;margin-bottom:1.1rem;padding-bottom:.65rem;border-bottom:1px solid rgba(255,255,255,.09);">Photo Properties</div>
+  <div id="ep-multi-msg" style="display:none;font-family:'Barlow Condensed',sans-serif;font-size:.78rem;letter-spacing:.06em;color:rgba(255,255,255,.45);padding:.5rem 0 1rem;"></div>
+  <div id="ep-controls">
+    <!-- Reframe -->
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(51,100,245,.8);margin-bottom:.6rem;margin-top:.1rem;">Reframe</div>
+    <div class="ep-row"><label class="ep-lbl">Pan X</label><span class="ep-val" id="ep-x-val">50%</span></div>
+    <input type="range" class="ep-sl" id="ep-x" min="0" max="100" step="1" value="50">
+    <div class="ep-row"><label class="ep-lbl">Pan Y</label><span class="ep-val" id="ep-y-val">50%</span></div>
+    <input type="range" class="ep-sl" id="ep-y" min="0" max="100" step="1" value="50">
+    <!-- Zoom -->
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(51,100,245,.8);margin:1rem 0 .6rem;">Zoom &amp; Size</div>
+    <div class="ep-row"><label class="ep-lbl">Zoom</label><span class="ep-val" id="ep-sc-val">100%</span></div>
+    <input type="range" class="ep-sl" id="ep-sc" min="100" max="260" step="1" value="100">
+    <div class="ep-row"><label class="ep-lbl">Height</label><span class="ep-val" id="ep-h-val">–</span></div>
+    <input type="range" class="ep-sl" id="ep-h" min="80" max="800" step="4" value="300">
+    <!-- Tone -->
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(51,100,245,.8);margin:1rem 0 .6rem;">Tone</div>
+    <div class="ep-row"><label class="ep-lbl">Brightness</label><span class="ep-val" id="ep-br-val">100%</span></div>
+    <input type="range" class="ep-sl" id="ep-br" min="30" max="180" step="1" value="100">
+    <div class="ep-row"><label class="ep-lbl">Contrast</label><span class="ep-val" id="ep-co-val">100%</span></div>
+    <input type="range" class="ep-sl" id="ep-co" min="60" max="160" step="1" value="100">
+    <div class="ep-row"><label class="ep-lbl">Saturation</label><span class="ep-val" id="ep-sa-val">100%</span></div>
+    <input type="range" class="ep-sl" id="ep-sa" min="0" max="200" step="1" value="100">
+    <!-- Actions -->
+    <div style="margin-top:1.25rem;display:flex;flex-direction:column;gap:.45rem;">
+      <button class="ep-btn ep-btn-blue" onclick="ED.swapPhoto()">Swap Photo</button>
+      <button class="ep-btn" onclick="ED.resetPhoto()">Reset to Default</button>
+    </div>
+  </div>
+</div>
+
+<!-- Top editor banner -->
+<div id="ed-banner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:8300;background:rgba(6,9,22,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(51,100,245,.3);padding:0 1.5rem;height:54px;align-items:center;justify-content:space-between;">
+  <div style="display:flex;align-items:center;gap:1.25rem;">
+    <span style="font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.08em;color:#fff;display:flex;align-items:center;gap:.5rem;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3364F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Edit Mode
+    </span>
+    <span id="ed-hint" style="font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.35);">Click any element · Drag to move · ⇧+click = multi-select · Handles to resize</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:.625rem;">
+    <button onclick="ED.undo()" title="Undo" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.55);width:36px;height:36px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:background .2s,color .2s;" onmouseenter="this.style.background='rgba(255,255,255,.14)';this.style.color='#fff';" onmouseleave="this.style.background='rgba(255,255,255,.06)';this.style.color='rgba(255,255,255,.55)';">↩</button>
+    <button id="ed-sec-btn" onclick="ED.toggleSections()" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.55);padding:0 1rem;height:36px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:.4rem;transition:background .2s,border-color .2s,color .2s;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><polyline points="8 5 3 9 8 13"/><polyline points="16 11 21 15 16 19"/></svg>
+      Reorder Sections
+    </button>
+    <button onclick="if(confirm('Clear all saved edits and restore defaults?')){localStorage.removeItem('mirsky-ed-state');location.reload();}" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;background:rgba(180,40,40,.15);border:1px solid rgba(220,60,60,.3);color:rgba(255,120,120,.8);padding:0 1rem;height:36px;border-radius:8px;cursor:pointer;transition:background .2s,color .2s;" onmouseenter="this.style.background='rgba(180,40,40,.35)';this.style.color='#fff';" onmouseleave="this.style.background='rgba(180,40,40,.15)';this.style.color='rgba(255,120,120,.8)';">Clear Edits</button>
+    <button onclick="ED.exit()" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;background:rgba(51,100,245,.28);border:1px solid rgba(51,100,245,.55);color:#fff;padding:0 1.25rem;height:36px;border-radius:8px;cursor:pointer;transition:background .2s;" onmouseenter="this.style.background='rgba(51,100,245,.45)';" onmouseleave="this.style.background='rgba(51,100,245,.28)';">✓ Done</button>
+  </div>
+</div>
+
+<!-- Floating edit button -->
+<button id="ed-toggle" onclick="ED.enter()" title="Open Visual Editor" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:8200;display:flex;align-items:center;gap:.5rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;padding:.65rem 1.25rem;border-radius:100px;background:rgba(14,18,38,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.6);cursor:pointer;box-shadow:0 4px 24px rgba(0,0,0,.45);transition:background .2s,border-color .2s,color .2s;" onmouseenter="this.style.background='rgba(51,100,245,.28)';this.style.borderColor='rgba(51,100,245,.55)';this.style.color='#fff';" onmouseleave="this.style.background='rgba(14,18,38,.92)';this.style.borderColor='rgba(255,255,255,.14)';this.style.color='rgba(255,255,255,.6)';">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+  Edit Page
+</button>
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<footer class="footer">
+  <div class="c">
+    <div class="footer-inner">
+      <div class="footer-logo"><img src="mirsky_transparent.png" alt="Mirsky Auto Detailing"></div>
+      <nav class="footer-nav">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#book">Book</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <span class="footer-copy">© 2025 Mirsky Auto Detailing. Seattle, WA.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Reviews carousel
+(function(){
+  const track = document.getElementById('reviewTrack');
+  const dotsEl = document.getElementById('carouselDots');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const cards = track.querySelectorAll('.review-card');
+  const total = cards.length;
+  let pos = 0, perView = 3, autoTimer;
+
+  function pv(){ return window.innerWidth < 600 ? 1 : window.innerWidth < 960 ? 2 : 3; }
+
+  function buildDots(){
+    dotsEl.innerHTML = '';
+    const count = Math.max(1, total - perView + 1);
+    for(let i = 0; i < count; i++){
+      const d = document.createElement('button');
+      d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Slide ' + (i + 1));
+      d.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(d);
+    }
+  }
+
+  function goTo(n){
+    perView = pv();
+    const max = total - perView;
+    pos = Math.max(0, Math.min(max, n));
+    const w = cards[0].getBoundingClientRect().width;
+    track.style.transform = `translateX(-${pos * (w + 20)}px)`;
+    dotsEl.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === pos));
+  }
+
+  function next(){ goTo(pos >= total - perView ? 0 : pos + 1); }
+  function prev(){ goTo(pos <= 0 ? total - perView : pos - 1); }
+  function startAuto(){ autoTimer = setInterval(next, 6000); }
+  function resetAuto(){ clearInterval(autoTimer); startAuto(); }
+
+  prevBtn.addEventListener('click', () => { prev(); resetAuto(); });
+  nextBtn.addEventListener('click', () => { next(); resetAuto(); });
+  window.addEventListener('resize', () => { perView = pv(); buildDots(); goTo(0); });
+
+  perView = pv(); buildDots(); goTo(0); startAuto();
+})();
+
+// Contact form — FormSubmit AJAX (no page redirect)
+(function(){
+  var form = document.getElementById('contact-form');
+  if(!form) return;
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var btn = document.getElementById('form-submit-btn');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    btn.style.opacity = '.6';
+    try {
+      var data = new FormData(form);
+      var res = await fetch('https://formsubmit.co/ajax/dylanmirsky@seattleacademy.org', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if(res.ok){
+        form.querySelectorAll('input:not([type=hidden]),textarea,button').forEach(function(el){ el.style.display='none'; });
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        btn.textContent = 'Submit Request';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        alert('Something went wrong — please text us at (206) 470-9450');
+      }
+    } catch(err){
+      btn.textContent = 'Submit Request';
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      alert('Something went wrong — please text us at (206) 470-9450');
+    }
+  });
+})();
+
+// Loading screen
+(function(){
+  // Each entry: [photo path, background-position to center the car]
+  var loaderPhotos = [
+    ['detailing_photos/IMG_3329.jpeg',  'center 58%'],  // Black Porsche 911 front 3/4
+    ['detailing_photos/IMG_2992.jpeg',  'center 60%'],  // Red GR86 front, under overhang
+    ['detailing_photos/IMG_3303.jpeg',  'center 55%'],  // Porsche 911 straight-on front
+    ['detailing_photos/IMG_4145.jpeg',  'center 65%'],  // White Porsche Cayman side
+    ['detailing_photos/IMG_4131.jpeg',  'center 62%'],  // BMW iX front 3/4
+    ['detailing_photos/IMG_2982.jpeg',  'center 52%'],  // Red GR86 front 3/4
+    ['detailing_photos/165DE9A9-F881-446E-8D95-DAB5737E2F66.JPG', 'center 48%'],  // Foamy Jeep
+  ];
+  var pick = loaderPhotos[Math.floor(Math.random() * loaderPhotos.length)];
+  var bg = document.querySelector('.loader-bg');
+  if(bg) bg.style.background = "url('"+pick[0]+"') "+pick[1]+"/cover no-repeat";
+
+  var loader = document.getElementById('page-loader');
+  var pct = document.getElementById('loader-pct');
+  var start = Date.now(), dur = 1600;
+  function tick(){
+    var p = Math.min(Math.round((Date.now()-start)/dur*100),100);
+    if(pct) pct.textContent = p+'%';
+    if(p < 100) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+  function hideLoader(){ loader.classList.add('loader-out'); }
+  if(document.readyState === 'complete'){
+    setTimeout(hideLoader, 1700);
+  } else {
+    window.addEventListener('load', function(){ setTimeout(hideLoader, 1700); });
+  }
+})();
+
+
+// ── VISUAL EDITOR ────────────────────────────────────────────────────────
+(function loadEditorState(){
+  var SEL='.svc-img,.flip-front,.flip-back,.work-strip-item,.contact-photo-card,.hero-img-wrap,.about-img-wrap,.sas-img-wrap,.addon-img';
+  try{
+    var raw=localStorage.getItem('mirsky-ed-state');if(!raw)return;
+    var state=JSON.parse(raw);
+    document.querySelectorAll(SEL).forEach(function(cont){
+      var img=cont.querySelector('img');if(!img)return;
+      var e=state[img.getAttribute('src')];if(!e)return;
+      if(e.op)img.style.objectPosition=e.op;
+      if(e.it)img.style.transform=e.it;
+      if(e.ito)img.style.transformOrigin=e.ito;
+      if(e.fi)img.style.filter=e.fi;
+      if(e.ct)cont.style.transform=e.ct;
+      if(e.ch)cont.style.height=e.ch;
+    });
+  }catch(ex){}
+})();
+
+var ED = (function(){
+  var on = false, secMode = false, _saveTimer = null;
+  // Primary selected element + type ('img'|'text'|'card')
+  var selEl = null, selType = null;
+  // For images: the actual <img> inside the selected container
+  var selImg = null;
+  // Multi-select: set of containers
+  var multiSels = new Set();
+  // Overlay divs for secondary multi-select highlights
+  var multiOvls = [];
+  // Pan state (drag image → change object-position)
+  var panImg = null, panStart, panPos0, panMulti = new Map();
+  // Move state (drag move-handle → translate container)
+  var moveEl = null, moveStart, moveTrans0, moveMulti = new Map();
+  // Resize state
+  var resizeCont = null, resizeStart, resizeH0, resizeW0, resizeSide;
+  // Undo
+  var undoStack = [];
+
+  var IMG_SEL = 'img:not(.loader-logo):not([src="mirsky_transparent.png"]):not(.header-logo img):not(.footer-logo img)';
+  var TEXT_SEL = 'h2,h3,h4,p,blockquote,.eyebrow,.svc-meta,.svc-price-note,.addon-price,.flip-label strong,.flip-label span,.step-num,.hl-item,.about-stat span,.area-tag,.area-note,.compare-not-rec,.compare-rec,.compare-cell span,.contact-photo-msg strong,.contact-photo-msg p,.services-sub,.review-stars-score';
+  var CONT_SEL = '.svc-img,.flip-front,.flip-back,.work-strip-item,.contact-photo-card,.hero-img-wrap,.about-img-wrap,.sas-img-wrap,.addon-img';
+  var CARD_SEL = '.addon-card,.step,.compare-col-header,.flip-label,.svc-body,.about-value-note,.mobile-fee-box';
+  var BS='font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.73rem;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .85rem;border-radius:7px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;cursor:pointer;white-space:nowrap;transition:background .15s;';
+
+  function cl(v,a,b){return Math.max(a,Math.min(b,v));}
+
+  /* ── Helpers ── */
+  function getObjPos(img){
+    var s=img.style.objectPosition||window.getComputedStyle(img).objectPosition||'50% 50%';
+    var p=s.trim().split(/\s+/); return{x:parseFloat(p[0])||50,y:parseFloat(p[1])||50};
+  }
+  function getTrans(el){
+    var t=el.style.transform||'';
+    var m=t.match(/translate\(([^,]+)px,([^)]+)px\)/);
+    return m?{x:parseFloat(m[1]),y:parseFloat(m[2])}:{x:0,y:0};
+  }
+  function setTrans(el,x,y){
+    var t=(el.style.transform||'').replace(/translate\([^)]+\)/g,'').trim();
+    if(x!==0||y!==0) t=('translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px) '+t).trim();
+    el.style.transform=t||'';
+  }
+  function getScale(img){
+    var m=(img.style.transform||'').match(/scale\(([^)]+)\)/);
+    return m?parseFloat(m[1]):1;
+  }
+  function setScale(img,s){
+    var t=(img.style.transform||'').replace(/scale\([^)]+\)/g,'').trim();
+    if(s!==1) t=(t+' scale('+s.toFixed(3)+')').trim();
+    img.style.transform=t||'';
+  }
+  function getFilter(img){
+    var f=img.style.filter||'';
+    var bm=f.match(/brightness\(([^)]+)\)/),cm=f.match(/contrast\(([^)]+)\)/),sm=f.match(/saturate\(([^)]+)\)/);
+    return{br:bm?parseFloat(bm[1]):1,co:cm?parseFloat(cm[1]):1,sa:sm?parseFloat(sm[1]):1};
+  }
+  function setFilter(img,br,co,sa){
+    img.style.filter='brightness('+br.toFixed(2)+') contrast('+co.toFixed(2)+') saturate('+sa.toFixed(2)+')';
+  }
+  function imgCont(img){
+    return img.closest(CONT_SEL)||img.parentElement;
+  }
+
+  /* ── Persist edits to localStorage ── */
+  function save(){
+    var state={};
+    document.querySelectorAll(CONT_SEL).forEach(function(cont){
+      var img=cont.querySelector('img');if(!img)return;
+      var key=img.getAttribute('src'),e={};
+      if(img.style.objectPosition)e.op=img.style.objectPosition;
+      if(img.style.transform)e.it=img.style.transform;
+      if(img.style.transformOrigin)e.ito=img.style.transformOrigin;
+      if(img.style.filter)e.fi=img.style.filter;
+      if(cont.style.transform)e.ct=cont.style.transform;
+      if(cont.style.height)e.ch=cont.style.height;
+      if(Object.keys(e).length)state[key]=e;
+    });
+    try{localStorage.setItem('mirsky-ed-state',JSON.stringify(state));}catch(ex){}
+  }
+
+  /* ── Toast ── */
+  function toast(msg,dur){
+    var t=document.getElementById('ed-toast');
+    t.textContent=msg;t.style.display='block';t.style.opacity='1';
+    clearTimeout(t._t);
+    t._t=setTimeout(function(){t.style.opacity='0';setTimeout(function(){t.style.display='none';},350);},dur||2200);
+  }
+
+  /* ── Multi-select overlays ── */
+  function clearOvls(){multiOvls.forEach(function(d){d.remove();});multiOvls=[];}
+  function updateOvls(){
+    clearOvls();
+    multiSels.forEach(function(cont){
+      if(cont===selEl) return;
+      var r=cont.getBoundingClientRect(),sy=window.scrollY,sx=window.scrollX;
+      var d=document.createElement('div');
+      d.className='ed-multi-ovl';
+      d.style.left=(r.left+sx-2)+'px';d.style.top=(r.top+sy-2)+'px';
+      d.style.width=(r.width+4)+'px';d.style.height=(r.height+4)+'px';
+      document.body.appendChild(d);multiOvls.push(d);
+    });
+  }
+
+  /* ── Position selection overlay + handles ── */
+  function positionSel(){
+    var sel=$('ed-sel'),rse=$('ed-resize-se'),rs=$('ed-resize-s'),mh=$('ed-move-hdl');
+    if(!selEl||!on){
+      sel.style.display='none';rse.style.display='none';rs.style.display='none';mh.style.display='none';
+      return;
+    }
+    var r=selEl.getBoundingClientRect(),sy=window.scrollY,sx=window.scrollX;
+    sel.style.cssText='display:block;position:absolute;pointer-events:none;z-index:8400;border:2px solid #3364F5;border-radius:5px;box-shadow:0 0 0 4px rgba(51,100,245,.18);left:'+(r.left+sx-2)+'px;top:'+(r.top+sy-2)+'px;width:'+(r.width+4)+'px;height:'+(r.height+4)+'px;';
+    // Move handle — top-right of selection
+    mh.style.display='flex';
+    mh.style.left=(r.right+sx-14)+'px';mh.style.top=(r.top+sy-36)+'px';
+    // Resize SE
+    rse.style.display='block';
+    rse.style.left=(r.right+sx)+'px';rse.style.top=(r.bottom+sy)+'px';
+    // Resize S
+    rs.style.display='block';
+    rs.style.left=(r.left+sx+r.width/2-20)+'px';rs.style.top=(r.bottom+sy+6)+'px';
+    updateOvls();
+  }
+  function $(id){return document.getElementById(id);}
+
+  /* ── Photo panel ── */
+  function showPanel(img){
+    var p=$('ed-photo-panel');if(!p)return;
+    p.style.display='block';
+    syncPanel(img);
+  }
+  function hidePanel(){var p=$('ed-photo-panel');if(p)p.style.display='none';}
+  function syncPanel(img){
+    if(!img)return;
+    var pos=getObjPos(img),sc=getScale(img),fi=getFilter(img);
+    var cont=imgCont(img),cr=cont?cont.getBoundingClientRect():null;
+    function sv(id,v){var e=$(id);if(e)e.value=v;}
+    function sv2(id,v){var e=$(id);if(e)e.textContent=v;}
+    sv('ep-x',pos.x.toFixed(0));sv2('ep-x-val',Math.round(pos.x)+'%');
+    sv('ep-y',pos.y.toFixed(0));sv2('ep-y-val',Math.round(pos.y)+'%');
+    sv('ep-sc',Math.round(sc*100));sv2('ep-sc-val',Math.round(sc*100)+'%');
+    if(cr){sv('ep-h',Math.round(cr.height));sv2('ep-h-val',Math.round(cr.height)+'px');}
+    sv('ep-br',Math.round(fi.br*100));sv2('ep-br-val',Math.round(fi.br*100)+'%');
+    sv('ep-co',Math.round(fi.co*100));sv2('ep-co-val',Math.round(fi.co*100)+'%');
+    sv('ep-sa',Math.round(fi.sa*100));sv2('ep-sa-val',Math.round(fi.sa*100)+'%');
+  }
+  function wirePanel(){
+    var ids=['ep-x','ep-y','ep-sc','ep-h','ep-br','ep-co','ep-sa'];
+    ids.forEach(function(id){
+      var el=$(id);if(!el||el._wired)return;el._wired=true;
+      el.addEventListener('input',function(){
+        var img=selImg;if(!img)return;
+        var px=+$('ep-x').value,py=+$('ep-y').value;
+        var sc=$('ep-sc').value/100;
+        var h=+$('ep-h').value;
+        var br=$('ep-br').value/100,co=$('ep-co').value/100,sa=$('ep-sa').value/100;
+        img.style.objectPosition=px+'% '+py+'%';
+        setScale(img,sc);
+        setFilter(img,br,co,sa);
+        var cont=imgCont(img);
+        if(cont&&id==='ep-h'){cont.style.height=h+'px';if(img.style.height)img.style.height=h+'px';positionSel();}
+        syncPanel(img);save();
+      });
+    });
+  }
+
+  /* ── Context toolbar (text/card) ── */
+  function showBar(el,type){
+    var bar=$('ed-bar');
+    if(type==='img'){bar.style.display='none';return;}
+    if(!el||!on){bar.style.display='none';return;}
+    var r=el.getBoundingClientRect(),sy=window.scrollY,sx=window.scrollX;
+    var by=r.top+sy-50;if(by<window.scrollY+62)by=r.bottom+sy+10;
+    bar.style.top=by+'px';bar.style.left=cl(r.left+sx,8,window.innerWidth-280+sx)+'px';
+    var h='<div style="display:flex;align-items:center;gap:.4rem;">';
+    if(type==='text'){
+      h+='<span style="font-family:\'Barlow Condensed\',sans-serif;font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.38);padding:0 .2rem;">Text</span>';
+      h+='<button style="'+BS+'" onmouseenter="this.style.background=\'rgba(255,255,255,.18)\'" onmouseleave="this.style.background=\'rgba(255,255,255,.08)\'" onclick="ED.fontSize(-1)">A−</button>';
+      h+='<button style="'+BS+'" onmouseenter="this.style.background=\'rgba(255,255,255,.18)\'" onmouseleave="this.style.background=\'rgba(255,255,255,.08)\'" onclick="ED.fontSize(1)">A+</button>';
+      h+='<button style="'+BS+'" onmouseenter="this.style.background=\'rgba(255,255,255,.18)\'" onmouseleave="this.style.background=\'rgba(255,255,255,.08)\'" onclick="ED.deselect()">Done</button>';
+    } else {
+      h+='<span style="font-family:\'Barlow Condensed\',sans-serif;font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.38);padding:0 .2rem;">Block · Drag handles to resize</span>';
+    }
+    h+='</div>';bar.innerHTML=h;bar.style.display='block';
+  }
+
+  /* ── Select ── */
+  function select(el,type){
+    if(selEl&&selEl!==el){
+      if(selEl.contentEditable==='true'){selEl.contentEditable='false';selEl.blur();}
+    }
+    selEl=el;selType=type;
+    selImg=(type==='img'&&el.tagName==='IMG')?el:(type==='img'?el.querySelector('img'):null);
+    positionSel();showBar(el,type);
+    if(type==='img'){showPanel(selImg);}else{hidePanel();}
+  }
+
+  function deselect(){
+    if(selEl){
+      if(selEl.contentEditable==='true'){selEl.contentEditable='false';selEl.blur();}
+      selEl=null;selType=null;selImg=null;
+    }
+    multiSels.clear();clearOvls();
+    ['ed-sel','ed-resize-se','ed-resize-s','ed-move-hdl','ed-bar'].forEach(function(id){
+      var e=$(id);if(e)e.style.display='none';
+    });
+    hidePanel();
+  }
+
+  /* ── Click ── */
+  function onClick(e){
+    if(!on)return;
+    var skip=['ed-bar','ed-banner','ed-photo-panel','ed-move-hdl','ed-resize-se','ed-resize-s'];
+    if(skip.some(function(id){return e.target.closest&&e.target.closest('#'+id);}))return;
+    if(e.target.id==='ed-toggle'||e.target.id==='ed-file')return;
+    if(e.target.closest('.ed-section-ctrl'))return;
+
+    var shift=e.shiftKey;
+    var img=e.target.closest(IMG_SEL);
+    if(img){
+      e.preventDefault();
+      var cont=imgCont(img);
+      if(shift){
+        if(multiSels.has(cont)){multiSels.delete(cont);}
+        else{multiSels.add(cont);}
+        if(!selEl||!multiSels.has(imgCont(selEl))){
+          var first=Array.from(multiSels)[0];
+          if(first){var fi=first.querySelector('img');if(fi)select(fi,'img');}
+        }
+        updateOvls();
+        if(multiSels.size>1)toast(multiSels.size+' photos selected — drag any to move all',2500);
+        return;
+      }
+      multiSels.clear();multiSels.add(cont);
+      select(img,'img');
+      return;
+    }
+
+    if(!shift){multiSels.clear();clearOvls();}
+
+    var card=e.target.closest(CARD_SEL);
+    if(card&&!e.target.closest(TEXT_SEL)){select(card,'card');return;}
+
+    var tx=e.target.closest(TEXT_SEL);
+    if(tx){
+      select(tx,'text');
+      tx.contentEditable='true';
+      var prev=tx.innerHTML;
+      tx.addEventListener('input',function(){
+        clearTimeout(tx._uh);
+        tx._uh=setTimeout(function(){undoStack.push({el:tx,html:prev});prev=tx.innerHTML;},600);
+      });
+      setTimeout(function(){tx.focus();},0);
+      return;
+    }
+    deselect();
+  }
+
+  /* ── Mouse down ── */
+  function onDown(e){
+    if(!on)return;
+    if(e.target.closest('#ed-photo-panel')||e.target.closest('#ed-bar')||e.target.closest('#ed-banner'))return;
+
+    // Move handle drag → translate container(s)
+    if(e.target.id==='ed-move-hdl'||e.target.closest('#ed-move-hdl')){
+      var cont=selEl?(selType==='img'?imgCont(selEl):selEl):null;
+      if(!cont)return;
+      moveEl=cont;moveStart={x:e.clientX,y:e.clientY};moveTrans0=getTrans(cont);
+      moveMulti.clear();
+      multiSels.forEach(function(c){moveMulti.set(c,getTrans(c));});
+      e.preventDefault();return;
+    }
+
+    // Resize handles
+    if(e.target.id==='ed-resize-se'||e.target.id==='ed-resize-s'){
+      var cont2=selEl?(selType==='img'?imgCont(selEl):selEl):null;
+      if(!cont2)return;
+      resizeCont=cont2;resizeStart={x:e.clientX,y:e.clientY};
+      var rect=cont2.getBoundingClientRect();
+      resizeH0=rect.height;resizeW0=rect.width;
+      resizeSide=e.target.id;
+      e.preventDefault();return;
+    }
+
+    // Pan image
+    var img=e.target.closest(IMG_SEL);
+    if(!img)return;
+    panImg=img;panStart={x:e.clientX,y:e.clientY};panPos0=getObjPos(img);
+    panMulti.clear();
+    multiSels.forEach(function(c){var mi=c.querySelector('img');if(mi)panMulti.set(mi,getObjPos(mi));});
+    img.style.cursor='grabbing';
+    e.preventDefault();
+  }
+
+  /* ── Mouse move ── */
+  function onMove(e){
+    // Resize
+    if(resizeCont){
+      var dy=e.clientY-resizeStart.y,dx=e.clientX-resizeStart.x;
+      var newH=Math.max(60,resizeH0+(resizeSide==='ed-resize-s'?dy:Math.max(dy,dx)));
+      resizeCont.style.height=newH+'px';
+      var mi=resizeCont.querySelector('img');
+      if(mi){mi.style.height=newH+'px';mi.style.objectFit='cover';}
+      if(selImg)syncPanel(selImg);
+      positionSel();return;
+    }
+    // Translate (move)
+    if(moveEl){
+      var dx2=e.clientX-moveStart.x,dy2=e.clientY-moveStart.y;
+      setTrans(moveEl,moveTrans0.x+dx2,moveTrans0.y+dy2);
+      moveMulti.forEach(function(t0,c){if(c!==moveEl)setTrans(c,t0.x+dx2,t0.y+dy2);});
+      positionSel();return;
+    }
+    // Pan
+    if(!panImg)return;
+    var r=panImg.getBoundingClientRect();
+    var pdx=(e.clientX-panStart.x)/r.width*100;
+    var pdy=(e.clientY-panStart.y)/r.height*100;
+    panImg.style.objectPosition=cl(panPos0.x-pdx,0,100).toFixed(1)+'% '+cl(panPos0.y-pdy,0,100).toFixed(1)+'%';
+    panMulti.forEach(function(p0,mi){
+      if(mi===panImg)return;
+      mi.style.objectPosition=cl(p0.x-pdx,0,100).toFixed(1)+'% '+cl(p0.y-pdy,0,100).toFixed(1)+'%';
+    });
+    if(selImg)syncPanel(selImg);
+    positionSel();
+  }
+
+  /* ── Mouse up ── */
+  function onUp(){
+    if(panImg){panImg.style.cursor='grab';panImg=null;}
+    moveEl=null;resizeCont=null;
+    moveMulti.clear();panMulti.clear();
+    save();
+  }
+
+  /* ── Arrow key move ── */
+  function onKey(e){
+    if(!on||!selEl)return;
+    if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;
+    if(e.target.contentEditable==='true')return;
+    e.preventDefault();
+    var step=e.shiftKey?40:8;
+    var dx=e.key==='ArrowLeft'?-step:e.key==='ArrowRight'?step:0;
+    var dy=e.key==='ArrowUp'?-step:e.key==='ArrowDown'?step:0;
+    var cont=selType==='img'?imgCont(selEl):selEl;
+    var t=getTrans(cont);setTrans(cont,t.x+dx,t.y+dy);
+    if(multiSels.size>1){
+      multiSels.forEach(function(c){if(c===cont)return;var mt=getTrans(c);setTrans(c,mt.x+dx,mt.y+dy);});
+    }
+    positionSel();save();
+  }
+
+  /* ── Section controls ── */
+  function addSectionCtrls(){
+    document.querySelectorAll('section,.highlights,.compare').forEach(function(sec){
+      if(sec.querySelector('.ed-section-ctrl'))return;
+      sec.style.position='relative';
+      var d=document.createElement('div');d.className='ed-section-ctrl';
+      d.innerHTML='<button class="ed-sec-btn" onclick="ED.moveSection(this,\'up\')" title="Move up">↑</button>'
+                 +'<button class="ed-sec-btn" onclick="ED.moveSection(this,\'down\')" title="Move down">↓</button>';
+      sec.appendChild(d);
+    });
+  }
+
+  return {
+    enter:function(){
+      on=true;document.body.classList.add('ed-on');
+      $('ed-toggle').style.display='none';
+      $('ed-banner').style.display='flex';
+      document.body.style.paddingTop='54px';
+      document.addEventListener('click',onClick,true);
+      document.addEventListener('mousedown',onDown);
+      document.addEventListener('mousemove',onMove);
+      document.addEventListener('mouseup',onUp);
+      document.addEventListener('keydown',onKey);
+      window.addEventListener('scroll',positionSel);
+      window.addEventListener('resize',positionSel);
+      addSectionCtrls();wirePanel();
+      _saveTimer=setInterval(function(){save();},15000);
+      toast('Click photo → edit panel opens · Drag to reframe · Drag ✛ handle to move · ⇧+click to multi-select · Arrow keys to nudge',4000);
+    },
+    exit:function(){
+      save();if(_saveTimer){clearInterval(_saveTimer);_saveTimer=null;}
+      on=false;secMode=false;deselect();
+      document.body.classList.remove('ed-on','ed-sections-on');
+      $('ed-toggle').style.display='flex';
+      $('ed-banner').style.display='none';
+      document.body.style.paddingTop='';
+      document.querySelectorAll(IMG_SEL).forEach(function(i){i.style.cursor='';});
+      document.removeEventListener('click',onClick,true);
+      document.removeEventListener('mousedown',onDown);
+      document.removeEventListener('mousemove',onMove);
+      document.removeEventListener('mouseup',onUp);
+      document.removeEventListener('keydown',onKey);
+      window.removeEventListener('scroll',positionSel);
+      window.removeEventListener('resize',positionSel);
+    },
+    toggleSections:function(){
+      secMode=!secMode;
+      document.body.classList.toggle('ed-sections-on',secMode);
+      var btn=$('ed-sec-btn');
+      btn.style.background=secMode?'rgba(51,100,245,.3)':'rgba(255,255,255,.06)';
+      btn.style.borderColor=secMode?'rgba(51,100,245,.6)':'rgba(255,255,255,.12)';
+      btn.style.color=secMode?'#fff':'rgba(255,255,255,.55)';
+      if(secMode)toast('Click ↑ ↓ on any section to reorder it',2500);
+    },
+    moveSection:function(btn,dir){
+      var sec=btn.closest('section,.highlights,.compare');if(!sec)return;
+      var par=sec.parentNode;
+      var sibs=Array.from(par.children).filter(function(c){return c.matches('section,.highlights,.compare');});
+      var i=sibs.indexOf(sec);
+      if(dir==='up'&&i>0)par.insertBefore(sec,sibs[i-1]);
+      if(dir==='down'&&sibs[i+1])par.insertBefore(sibs[i+1],sec);
+    },
+    swapPhoto:function(){
+      var t=selImg;if(!t)return;
+      var inp=$('ed-file');
+      inp.onchange=function(){if(inp.files[0]){t.src=URL.createObjectURL(inp.files[0]);inp.value='';syncPanel(t);positionSel();}};
+      inp.click();
+    },
+    resetPhoto:function(){
+      var img=selImg;if(!img)return;
+      img.style.objectPosition='';img.style.transform='';img.style.filter='';
+      var cont=imgCont(img);if(cont)cont.style.height='';img.style.height='';
+      syncPanel(img);positionSel();save();toast('Photo reset');
+    },
+    fontSize:function(dir){
+      if(!selEl)return;
+      var fs=parseFloat(window.getComputedStyle(selEl).fontSize)||16;
+      selEl.style.fontSize=(fs+dir*1.5).toFixed(1)+'px';
+      positionSel();
+    },
+    deselect:deselect,
+    undo:function(){
+      if(!undoStack.length){toast('Nothing to undo');return;}
+      var last=undoStack.pop();last.el.innerHTML=last.html;toast('Undone ↩');
+    }
+  };
+})();
+// ─────────────────────────────────────────────────────────────────────────
+
+// Photo drop zone
+function ED_photoPreview(files){
+  var prev=document.getElementById('photo-preview');
+  if(!prev)return;
+  Array.from(files).slice(0,10).forEach(function(f){
+    if(!f.type.startsWith('image/'))return;
+    var img=document.createElement('img');
+    img.src=URL.createObjectURL(f);
+    prev.appendChild(img);
+  });
+}
+(function(){
+  var drop=document.getElementById('photo-drop');
+  if(!drop)return;
+  drop.addEventListener('dragover',function(e){e.preventDefault();drop.classList.add('drag-over');});
+  drop.addEventListener('dragleave',function(){drop.classList.remove('drag-over');});
+  drop.addEventListener('drop',function(e){
+    e.preventDefault();drop.classList.remove('drag-over');
+    ED_photoPreview(e.dataTransfer.files);
+  });
+})();
+
+</script>
+</body>
+</html>

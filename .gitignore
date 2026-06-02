@@ -1,0 +1,15 @@
+# Large files not needed in repo
+drive-download-20260521T065209Z-3-001.zip
+
+# Temporary screenshots from dev workflow
+temporary screenshots/
+
+# Old HTML export from browser
+Mirsky Auto Detailing — Seattle, WA.html
+Mirsky Auto Detailing — Seattle, WA_files/
+
+# Claude Code settings
+.claude/
+
+# macOS
+.DS_Store
