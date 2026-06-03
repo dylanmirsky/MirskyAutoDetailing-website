@@ -70,7 +70,7 @@
     }
     .nav-icon:hover .nav-icon-btn{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.28);transform:translateY(-1px);}
     .nav-icon-btn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;}
-    .nav-icon-label{font-family:var(--fl);font-weight:600;font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.4);transition:color var(--dur) var(--ease);}
+    .nav-icon-label{font-family:var(--fl);font-weight:600;font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.4);transition:color var(--dur) var(--ease);white-space:nowrap;}
     .nav-icon:hover .nav-icon-label{color:rgba(255,255,255,.7);}
     .nav-phone{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.05em;color:#fff;background:rgba(51,100,245,.15);border:1px solid rgba(51,100,245,.35);border-radius:8px;padding:.38rem .9rem;transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease),transform var(--dur) var(--spring);white-space:nowrap;}
     .nav-phone:hover{background:rgba(51,100,245,.28);border-color:rgba(51,100,245,.6);transform:translateY(-1px);}
@@ -500,6 +500,13 @@
       .work-strip-item{width:190px;height:155px;}
       .form-row{grid-template-columns:1fr;}
       .team-flip-grid{grid-template-columns:1fr 1fr;}
+      .header-inner{gap:.25rem;}
+      .nav-right{gap:.5rem;}
+      .nav-icon-btn{width:32px;height:32px;border-radius:8px;}
+      .nav-icon-btn svg{width:14px;height:14px;}
+      .nav-icon-label{font-size:.5rem;white-space:nowrap;}
+      .nav-left{gap:.75rem;}
+      .nav-left a{font-size:.72rem;}
     }
   </style>
 </head>
@@ -1148,7 +1155,7 @@
       <form class="cta-form" id="contact-form">
         <!-- FormSubmit config -->
         <input type="hidden" name="_subject" value="New Quote Request — Mirsky Auto Detailing">
-        <input type="hidden" name="_cc" value="2064709450@tmomail.net,dylanmirsky@seattleacademy.org,cormackneihart@seattleacademy.org,dylanmirsky17@gmail.com">
+        <input type="hidden" name="_cc" value="2064709450@tmomail.net,2065329149@tmomail.net,dylanmirsky@seattleacademy.org,cormackneihart@seattleacademy.org,dylanmirsky17@gmail.com">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
 
@@ -1270,7 +1277,7 @@
     btn.style.opacity = '.6';
     try {
       var data = new FormData(form);
-      var res = await fetch('https://formsubmit.co/ajax/mirskyautodetailing@gmail.com', {
+      var res = await fetch('https://formsubmit.co/ajax/b3be8e4d0856d906a03876f83a07172a', {
         method: 'POST',
         body: data,
         headers: { 'Accept': 'application/json' }
