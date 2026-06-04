@@ -509,6 +509,8 @@
       .nav-left a{font-size:.72rem;}
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init('ZEyTJ3Z53gb3lneU4');</script>
 </head>
 <body>
 
@@ -1153,39 +1155,30 @@
         </div>
       </div>
       <form class="cta-form" id="contact-form">
-        <!-- FormSubmit config -->
-        <input type="hidden" name="_subject" value="New Quote Request — Mirsky Auto Detailing">
-        <input type="hidden" name="_cc" value="2064709450@tmomail.net,2065329149@tmomail.net,dylanmirsky@seattleacademy.org,cormackneihart@seattleacademy.org,dylanmirsky17@gmail.com">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-
         <div class="form-row">
-          <div class="form-group"><label>First Name *</label><input type="text" name="first_name" placeholder="John" required></div>
-          <div class="form-group"><label>Last Name *</label><input type="text" name="last_name" placeholder="Smith" required></div>
+          <div class="form-group"><label>First Name *</label><input type="text" id="first_name" placeholder="John" required></div>
+          <div class="form-group"><label>Last Name *</label><input type="text" id="last_name" placeholder="Smith" required></div>
         </div>
-        <div class="form-group"><label>Phone Number *</label><input type="tel" name="phone" placeholder="(206) 555-0100" required></div>
+        <div class="form-row">
+          <div class="form-group"><label>Email *</label><input type="email" id="from_email" placeholder="john@email.com" required></div>
+          <div class="form-group"><label>Phone Number *</label><input type="tel" id="phone" placeholder="(206) 555-0100" required></div>
+        </div>
+        <div class="form-group"><label>Car Make &amp; Model *</label><input type="text" id="car_make_model" placeholder="e.g. 2019 Toyota Camry" required></div>
         <div class="form-group">
           <span class="services-select-label">Services Interested In — select all that apply</span>
           <div class="services-checks">
-            <label class="svc-check"><input type="checkbox" name="service" value="Exterior Detail"><span class="svc-check-pill">Exterior Detail</span></label>
-            <label class="svc-check"><input type="checkbox" name="service" value="Interior Detail"><span class="svc-check-pill">Interior Detail</span></label>
-            <label class="svc-check"><input type="checkbox" name="service" value="Full Detail"><span class="svc-check-pill">Full Detail</span></label>
-            <label class="svc-check"><input type="checkbox" name="service" value="Engine Bay"><span class="svc-check-pill">Engine Bay</span></label>
-            <label class="svc-check"><input type="checkbox" name="service" value="Sealant"><span class="svc-check-pill">Sealant</span></label>
-            <label class="svc-check"><input type="checkbox" name="service" value="Clay Bar"><span class="svc-check-pill">Clay Bar</span></label>
-            <label class="svc-check"><input type="checkbox" name="service" value="Not Sure"><span class="svc-check-pill">Not Sure</span></label>
+            <label class="svc-check"><input type="checkbox" class="svc-checkbox" value="Exterior Detail"><span class="svc-check-pill">Exterior Detail</span></label>
+            <label class="svc-check"><input type="checkbox" class="svc-checkbox" value="Interior Detail"><span class="svc-check-pill">Interior Detail</span></label>
+            <label class="svc-check"><input type="checkbox" class="svc-checkbox" value="Full Detail"><span class="svc-check-pill">Full Detail</span></label>
+            <label class="svc-check"><input type="checkbox" class="svc-checkbox" value="Engine Bay"><span class="svc-check-pill">Engine Bay</span></label>
+            <label class="svc-check"><input type="checkbox" class="svc-checkbox" value="Sealant"><span class="svc-check-pill">Sealant</span></label>
+            <label class="svc-check"><input type="checkbox" class="svc-checkbox" value="Clay Bar"><span class="svc-check-pill">Clay Bar</span></label>
+            <label class="svc-check"><input type="checkbox" class="svc-checkbox" value="Not Sure"><span class="svc-check-pill">Not Sure</span></label>
           </div>
         </div>
-        <div class="form-group"><label>Vehicle &amp; Additional Notes</label><textarea name="notes" placeholder="Year, make, model — condition, pet hair, kids, etc.…"></textarea></div>
-        <div class="form-group">
-          <label>Vehicle Photos <span style="color:rgba(255,255,255,.3);font-weight:400;text-transform:none;letter-spacing:0;">(optional — helps us quote accurately)</span></label>
-          <div class="photo-drop" id="photo-drop" onclick="document.getElementById('photo-input').click()">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            <span class="photo-drop-txt">Drag photos here or <em>browse</em></span>
-            <span class="photo-drop-sub">JPG, PNG, HEIC — up to 10 photos</span>
-            <div id="photo-preview"></div>
-          </div>
-          <input type="file" id="photo-input" name="vehicle-photos" multiple accept="image/*" style="display:none;" onchange="ED_photoPreview(this.files)">
+        <div class="form-group"><label>Notes About Your Vehicle</label><textarea id="notes" placeholder="Condition, pet hair, stains, specific concerns…"></textarea></div>
+        <div style="background:rgba(51,100,245,.08);border:1px solid rgba(51,100,245,.2);border-radius:8px;padding:.75rem 1rem;font-family:'Barlow Condensed',sans-serif;font-size:.85rem;color:rgba(255,255,255,.55);letter-spacing:.03em;">
+          📷 Want to send photos of your vehicle? Text them to <a href="sms:2064709450" style="color:rgba(100,154,255,.85);text-decoration:none;">(206) 470-9450</a> after submitting — it helps us give you a more accurate quote.
         </div>
 
         <!-- Success message (hidden until submitted) -->
@@ -1265,38 +1258,35 @@
   perView = pv(); buildDots(); goTo(0); startAuto();
 })();
 
-// Contact form — FormSubmit AJAX (no page redirect)
+// Contact form — EmailJS
 (function(){
   var form = document.getElementById('contact-form');
   if(!form) return;
-  form.addEventListener('submit', async function(e){
+  form.addEventListener('submit', function(e){
     e.preventDefault();
     var btn = document.getElementById('form-submit-btn');
     btn.textContent = 'Sending…';
     btn.disabled = true;
     btn.style.opacity = '.6';
-    try {
-      var data = new FormData(form);
-      var res = await fetch('https://formsubmit.co/ajax/b3be8e4d0856d906a03876f83a07172a', {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-      if(res.ok){
-        form.querySelectorAll('input:not([type=hidden]),textarea,button').forEach(function(el){ el.style.display='none'; });
-        document.getElementById('form-success').style.display = 'block';
-      } else {
-        btn.textContent = 'Submit Request';
-        btn.disabled = false;
-        btn.style.opacity = '1';
-        alert('Something went wrong — please text us at (206) 470-9450');
-      }
-    } catch(err){
+    var services = Array.from(document.querySelectorAll('.svc-checkbox:checked')).map(function(el){ return el.value; }).join(', ') || 'None selected';
+    var params = {
+      first_name: document.getElementById('first_name').value,
+      last_name: document.getElementById('last_name').value,
+      from_email: document.getElementById('from_email').value,
+      phone: document.getElementById('phone').value,
+      car_make_model: document.getElementById('car_make_model').value,
+      service: services,
+      notes: document.getElementById('notes').value
+    };
+    emailjs.send('service_o5xlc8f', 'template_a8eg22n', params).then(function(){
+      form.querySelectorAll('input:not([type=hidden]),textarea,button,.photo-note').forEach(function(el){ el.style.display='none'; });
+      document.getElementById('form-success').style.display = 'block';
+    }, function(){
       btn.textContent = 'Submit Request';
       btn.disabled = false;
       btn.style.opacity = '1';
       alert('Something went wrong — please text us at (206) 470-9450');
-    }
+    });
   });
 })();
 
